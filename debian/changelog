@@ -1,8 +1,10 @@
 mx-system (17~rc1) mx; urgency=medium
 
-  * update some files 
+  * Restore the dependencies.
+  * debian/postinst: update some files, apt-mark the dependencies as manually
+    installed.
 
- -- Steven Pusser <dolphin@littlebyte>  Sun, 10 Dec 2017 14:27:27 -0500
+ -- Steven Pusser <stevep@mxlinux.org>  Sun, 10 Dec 2017 14:27:27 -0500
 
 mx-system (17~b1) mx; urgency=medium
 
