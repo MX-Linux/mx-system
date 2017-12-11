@@ -1,0 +1,17 @@
+Source: mx-system
+Section: system
+Priority: optional
+Maintainer: Steven Pusser (Stevo) <maintainer@mepiscommunity.org>
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.5
+
+Package: mx-system
+Architecture: all
+Depends:
+# python-bluez,
+# system-config-printer,
+# system-config-samba
+Description: metapackage for packages needed for system functions
+ This metapackage depends on packages needed for certain systems to work with
+ full functionality. Unlike Debian, MX Linux does not install recommended
+ packages by default, so this package makes sure they are installed.
