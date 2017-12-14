@@ -2,8 +2,16 @@
 
 if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remove" ] ; then
     apt-mark manual python-bluez system-config-printer system-config-samba
-    sed -i s/OS\=\"\${GRUB_DISTRIBUTOR}\ GNU\\/Linux\"/OS\=\"\${GRUB_DISTRIBUTOR}\"/ /etc/grub.d/10_linux
+    if [ -e /etc/grub.d/10_linux ]; then
+        sed -i s/OS\=\"\${GRUB_DISTRIBUTOR}\ GNU\\/Linux\"/OS\=\"\${GRUB_DISTRIBUTOR}\"/ /etc/grub.d/10_linux
+    fi
+    if [ -e /etc/default/grub ]; then
     sed -i s/lsb_release\ -i\ -s/lsb_release\ -d\ -s/ /etc/default/grub
+    fi
+    if [ -e /usr/share/man/man8/init.8.gz ]; then
+    ln -fs /usr/share/man/man8/init.8.gz /usr/share/man/man1/init.1.gz
+    fi
+
 fi
 
 #DEBHELPER#

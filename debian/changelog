@@ -1,3 +1,15 @@
+mx-system (17~rc1+2) mx; urgency=medium
+
+  * added symlink for init man files 
+
+ -- dolphin oracle <dolphinoracle@gmail.com>  Wed, 13 Dec 2017 20:06:28 -0500
+
+mx-system (17~rc1+1) mx; urgency=medium
+
+  * modify postinst script to test for files 
+
+ -- Steven Pusser <stevep@mxlinux.org>  Mon, 11 Dec 2017 22:06:30 -0500
+
 mx-system (17~rc1) mx; urgency=medium
 
   * Restore the dependencies.
