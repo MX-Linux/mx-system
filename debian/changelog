@@ -1,3 +1,28 @@
+mx-system (17.03) mx; urgency=medium
+
+  *  modify RC and PRE_RC mx-version files to reflect release
+
+ -- Timothy E. Harris <dolphin@littlebyte>  Sat, 16 Dec 2017 18:12:28 -0500
+
+mx-system (17.02) mx; urgency=medium
+
+  * Add /etc/mx-version symlink to postinst
+
+ -- Timothy E. Harris <maintainer@mxrepo.com>  Fri, 15 Dec 2017 13:40:27 -0500
+
+mx-system (17.01) mx; urgency=medium
+
+  * Remove lightlocker dependency
+
+ -- Timothy E. Harris <maintainer@mxrepo.com>  Thu, 14 Dec 2017 17:37:41 -0500
+
+mx-system (17) mx; urgency=medium
+
+  * Update for final MX 17 release.
+  * Add light-locker to dependencies.
+
+ -- Steven Pusser <stevep@mxlinux.org>  Wed, 13 Dec 2017 12:29:04 -0800
+
 mx-system (17~rc1+2) mx; urgency=medium
 
   * added symlink for init man files 

@@ -11,7 +11,13 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e /usr/share/man/man8/init.8.gz ]; then
     ln -fs /usr/share/man/man8/init.8.gz /usr/share/man/man1/init.1.gz
     fi
-
+    if [ -e /etc/mx-version ]; then
+    ln -fs /etc/mx-version /etc/antix-version
+    fi
+    if [ -e /etc/mx-version ]; then
+    sed -i s/MX-17.RC1/MX-17/ /etc/mx-version
+    sed -i s/MX-17.PRE_RC1/MX-17/ /etc/mx-version
+    fi
 fi
 
 #DEBHELPER#
