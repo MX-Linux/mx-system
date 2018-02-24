@@ -2,21 +2,35 @@
 
 if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remove" ] ; then
     apt-mark manual python-bluez system-config-printer system-config-samba
+    # fix grub menu label
     if [ -e /etc/grub.d/10_linux ]; then
         sed -i s/OS\=\"\${GRUB_DISTRIBUTOR}\ GNU\\/Linux\"/OS\=\"\${GRUB_DISTRIBUTOR}\"/ /etc/grub.d/10_linux
     fi
     if [ -e /etc/default/grub ]; then
     sed -i s/lsb_release\ -i\ -s/lsb_release\ -d\ -s/ /etc/default/grub
     fi
+    # fix man init entry to reflect sysVinit instead of systemd
     if [ -e /usr/share/man/man8/init.8.gz ]; then
     ln -fs /usr/share/man/man8/init.8.gz /usr/share/man/man1/init.1.gz
     fi
+    #add a symlink to mx-version called antix-version, because some apps look for info from antix-version
     if [ -e /etc/mx-version ]; then
-    ln -fs /etc/mx-version /etc/antix-version
+        if [ ! -e /etc/antix-version ]; then
+        ln -fs /etc/mx-version /etc/antix-version
+        fi
     fi
+    #update mx-version to latest, but only for PRE_RC and RC releases
     if [ -e /etc/mx-version ]; then
-    sed -i s/MX-17.RC1/MX-17/ /etc/mx-version
-    sed -i s/MX-17.PRE_RC1/MX-17/ /etc/mx-version
+    sed -i s/MX-17.RC1/MX-17.1/ /etc/mx-version
+    sed -i s/MX-17.PRE_RC1/MX-17.1/ /etc/mx-version
+    sed -i s/MX-17/MX-17.1/ /etc/mx-version
+    
+    fi
+    #update udev rules for optical devices (see install)
+    udevadm trigger --attr-match=kernel="sr[0-9]*"
+    #correct mouse acceleration problem with a .conf file from /usr/share/X11/xorg.conf.d/10-evdev.conf
+    if [ ! -e /etc/X11/xorg.conf.d/10-evdev.conf ]; then
+    cp /usr/share/X11/xorg.conf.d/10-evdev.conf /etc/X11/xorg.conf.d/10-evdev.conf
     fi
 fi
 
