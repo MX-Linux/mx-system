@@ -1,8 +1,14 @@
-mx-system (17.05) mx; urgency=medium
+mx-system (17.06) mx; urgency=medium
 
   * mx 17.1 
 
  -- dolphinoracle <dolphin@littlebyte>  Sat, 24 Feb 2018 09:50:59 -0500
+
+mx-system (17.05) mx; urgency=medium
+
+  * Add libelf-dev as a workaround to Debian bug 885474.
+
+ -- Steven Pusser <stevep@mxlinux.org>  Mon, 08 Jan 2018 11:43:22 -0800
 
 mx-system (17.04) mx; urgency=medium
 

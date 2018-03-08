@@ -19,10 +19,11 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         ln -fs /etc/mx-version /etc/antix-version
         fi
     fi
-    #update mx-version to latest, but only for PRE_RC and RC releases
+    #update mx-version to latest, but only for PRE_RC, RC, and later releases
     if [ -e /etc/mx-version ]; then
     sed -i s/MX-17.RC1/MX-17/ /etc/mx-version
     sed -i s/MX-17.PRE_RC1/MX-17/ /etc/mx-version
+    sed -i s/MX-17.1-RC1_/MX-17.1_/ /etc/mx-version
     sed -i s/MX-17_/MX-17.1_/ /etc/mx-version
     
     fi
