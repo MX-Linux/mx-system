@@ -1,3 +1,9 @@
+mx-system (18.05) mx; urgency=medium
+
+  * added /etc/issue 
+
+ -- dolphinoracle <dolphinoracle@gmail.com>  Thu, 31 May 2018 20:56:22 -0400
+
 mx-system (17.06) mx; urgency=medium
 
   * mx 17.1 

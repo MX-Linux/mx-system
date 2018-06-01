@@ -1,1 +1,2 @@
 *.rules etc/udev/rules.d 
+issue usr/share/antiX

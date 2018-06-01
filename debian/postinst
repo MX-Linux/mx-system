@@ -33,6 +33,22 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ ! -e /etc/X11/xorg.conf.d/10-evdev.conf ]; then
     cp /usr/share/X11/xorg.conf.d/10-evdev.conf /etc/X11/xorg.conf.d/10-evdev.conf
     fi
+    
+    #update installed /etc/issue
+    #check for live system
+    #check for existence so that it doesn't do anything during initial build process
+    if [ -e /etc/issue ]; then
+        #test for live system, exit if found
+        LIVE_CHECK=$(df -T / |tail -n1 |awk '{print $2}')
+        if [ "$LIVE_CHECK" = "overlay" ] || [ "$LIVE_CHECK" = "aufs" ]; then
+            echo "running live, no change to /etc/issue"
+        else
+            #copy from /usr/share/antiX if cli-installer message found
+            if [ $(grep -q "cli-installer" /etc/issue && echo $?) = 0 ]; then
+                cp /usr/share/antiX/issue /etc/issue
+            fi
+        fi
+    fi
 fi
 
 #DEBHELPER#
