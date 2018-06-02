@@ -45,8 +45,10 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         else
             #copy from /usr/share/antiX
             #only if it looks like the antiX/mx live issue file
-            TEMP=$(grep "cli-installer" /etc/issue)
-            test $TEMP && cp /usr/share/antiX/issue /etc/issue
+            CHECK=$(sed '/cli-installer/!d' /etc/issue)
+            if [ -n "$CHECK" ]; then
+                cp /usr/share/antiX/issue /etc/issue
+            fi
         fi
     fi
 fi
