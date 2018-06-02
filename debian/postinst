@@ -43,10 +43,10 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         if [ "$LIVE_CHECK" = "overlay" ] || [ "$LIVE_CHECK" = "aufs" ]; then
             echo "running live, no change to /etc/issue"
         else
-            #copy from /usr/share/antiX if cli-installer message found
-            if [ $(grep -q "cli-installer" /etc/issue && echo $?) = 0 ]; then
-                cp /usr/share/antiX/issue /etc/issue
-            fi
+            #copy from /usr/share/antiX
+            #only if it looks like the antiX/mx live issue file
+            TEMP=$(grep "cli-installer" /etc/issue)
+            test $TEMP && cp /usr/share/antiX/issue /etc/issue
         fi
     fi
 fi
