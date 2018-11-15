@@ -57,8 +57,8 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #reconfigure debconf with DEBIAN_FRONTEND to Gnome for graphical dpkg use when X available
     #will default back to dialog if X not available
     if [ ! -e /etc/mxsystem_frontend.chk ]; then
-        debconf-set-selections <<< "debconf debconf/frontend select Gnome" 
-        dpkg-reconfigure --frontend=noninteractive debconf
+        #debconf-set-selections <<< "debconf debconf/frontend select Gnome" 
+        echo 'debconf debconf/frontend select Gnome' | debconf-set-selections
         touch /etc/mxsystem_frontend.chk
     fi
 fi
