@@ -1,3 +1,9 @@
+mx-system (18.11.01) mx; urgency=medium
+
+  * modify DEBIAN_FRONTEND 
+
+ -- dolphin <dolphin@littlebyte>  Wed, 14 Nov 2018 22:08:14 -0500
+
 mx-system (18.07) mx; urgency=medium
 
   * correct systemd tmp directory cleanup at boot 

@@ -25,6 +25,8 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/MX-17.PRE_RC1/MX-17/ /etc/mx-version
     sed -i s/MX-17.1-RC1_/MX-17.1_/ /etc/mx-version
     sed -i s/MX-17_/MX-17.1_/ /etc/mx-version
+    sed -i s/MX-17.1_/MX-18_/ /etc/mx-version
+    sed -i s/Horizon/Continuum/ /etc/mx-version
     
     fi
     #update udev rules for optical devices (see install)
@@ -50,6 +52,14 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
                 cp /usr/share/antiX/issue /etc/issue
             fi
         fi
+    fi
+    
+    #reconfigure debconf with DEBIAN_FRONTEND to Gnome for graphical dpkg use when X available
+    #will default back to dialog if X not available
+    if [ ! -e /etc/mxsystem_frontend.chk ]; then
+        debconf-set-selections <<< "debconf debconf/frontend select Gnome" 
+        dpkg-reconfigure --frontend=noninteractive debconf
+        touch /etc/mxsystem_frontend.chk
     fi
 fi
 
