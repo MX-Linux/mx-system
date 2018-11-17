@@ -1,3 +1,4 @@
 *.rules etc/udev/rules.d 
 issue usr/share/antiX
 mx-tmp.conf etc/tmpfiles.d
+lsb-release etc
