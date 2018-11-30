@@ -8,9 +8,6 @@ Standards-Version: 3.9.8
 Package: mx-system
 Architecture: all
 Depends:
- python-bluez,
- system-config-printer,
- system-config-samba,
  libelf-dev
 Description: metapackage for packages needed for system functions
  This metapackage depends on packages needed for certain systems to work with
