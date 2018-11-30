@@ -1,3 +1,9 @@
+mx-system (18.11.02) mx; urgency=medium
+
+  * added libelf-dev
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Thu, 29 Nov 2018 20:10:48 -0500
+
 mx-system (18.11.01) mx; urgency=medium
 
   * modify DEBIAN_FRONTEND 
