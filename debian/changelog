@@ -1,3 +1,9 @@
+mx-system (18.11.04) mx; urgency=medium
+
+  * refreshed for mx17 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 01 Dec 2018 18:24:09 -0500
+
 mx-system (18.11.03) mx; urgency=medium
 
   * removed some depends from the mx17 days 
