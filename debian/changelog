@@ -1,3 +1,9 @@
+mx-system (18.11.05) mx; urgency=medium
+
+  * initial mx18 release
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 01 Dec 2018 18:27:45 -0500
+
 mx-system (18.11.04) mx; urgency=medium
 
   * refreshed for mx17 
