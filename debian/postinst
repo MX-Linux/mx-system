@@ -29,6 +29,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/Horizon/Continuum/ /etc/mx-version
     sed -i s/Horizon/Continuum/ /etc/lsb-release
     sed -i s/17/18/ /etc/lsb-release
+    sed -i s/MX-18RC1/MX-18/ /etc/mx-version
     
     fi
     #update udev rules for optical devices (see install)
