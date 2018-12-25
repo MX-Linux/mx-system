@@ -54,6 +54,11 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
             if [ -n "$CHECK" ]; then
                 cp /usr/share/antiX/issue /etc/issue
             fi
+            #change if running the mx17.1 edition, change to mx linux
+            CHECK2=$(sed '/17.1/!d' /etc/issue)
+            if [ -n "$CHECK2" ]; then
+                cp /usr/share/antiX/issue /etc/issue
+            fi
         fi
     fi
     
