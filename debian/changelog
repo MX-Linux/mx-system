@@ -1,3 +1,10 @@
+mx-system (19.01.01) mx; urgency=medium
+
+  * fix symlink on mx-version to antix-version 
+  * add vmd to /etc/initramfs-tools/modules
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Tue, 22 Jan 2019 19:24:42 -0500
+
 mx-system (18.12.04) mx; urgency=medium
 
   * bump issue to reflect generic mx linux instead of version number 

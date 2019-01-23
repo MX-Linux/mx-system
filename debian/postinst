@@ -16,7 +16,10 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #add a symlink to mx-version called antix-version, because some apps look for info from antix-version
     if [ -e /etc/mx-version ]; then
         if [ ! -e /etc/antix-version ]; then
-        ln -fs /etc/mx-version /etc/antix-version
+        ln -frs /etc/mx-version /etc/antix-version
+        fi
+        if [ "$(readlink /etc/antix-version)" = "/etc/mx-version" ]; then
+        ln -frs /etc/mx-version /etc/antix-version
         fi
     fi
     #update mx-version to latest, but only for PRE_RC, RC, and later releases
@@ -61,6 +64,13 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
             fi
         fi
     fi
+    
+    ##add vmd to /etc/initramfs-tools/modules if its not already there
+    VMD_CHECK=$(sed '/\<vmd\>/!d' /etc/initramfs-tools/modules)
+    if [ ! -n "$VMD_CHECK" ]; then
+		echo "adding vmd modules to /ec/initramfs-tools/modules"
+		echo "vmd" >> /etc/initramfs-tools/modules
+	fi
     
     #reconfigure debconf with DEBIAN_FRONTEND to Gnome for graphical dpkg use when X available
     #will default back to dialog if X not available
