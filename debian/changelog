@@ -1,3 +1,9 @@
+mx-system (19.02.01) mx; urgency=medium
+
+  * bump for 18.1 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Tue, 05 Feb 2019 19:17:16 -0500
+
 mx-system (19.01.01) mx; urgency=medium
 
   * fix symlink on mx-version to antix-version 
