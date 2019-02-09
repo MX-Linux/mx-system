@@ -34,6 +34,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/17/18/ /etc/lsb-release
     sed -i s/MX-18RC1/MX-18/ /etc/mx-version
     sed -i s/MX-18/MX-18.1/ /etc/mx-version
+    sed -i s/18/18.1/ /etc/lsb-release
     
     fi
     #update udev rules for optical devices (see install)
@@ -80,6 +81,22 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         echo 'debconf debconf/frontend select Gnome' | debconf-set-selections
         touch /etc/mxsystem_frontend.chk
     fi
+     
+     #add legacy libsane folders
+     
+    if [ ! -e /lib/sane ]; then
+        mkdir -p /usr/lib/sane
+    fi
+    
+	if [ "$(dpkg --print-architecture)" = "amd64" ]; then
+		if [ ! -e /usr/lib64/sane ]; then
+        mkdir -p /usr/lib64/sane
+        fi
+    fi
+    
+    
+    
+    
 fi
 
 #DEBHELPER#
