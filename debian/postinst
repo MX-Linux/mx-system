@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
 if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remove" ] ; then
-    apt-mark manual libelf-dev cryptsetup-modified-functions
+    apt-mark manual libelf-dev cryptsetup-modified-functions ecryptfs-utils libnss-mdns
     # fix grub menu label
     if [ -e /etc/grub.d/10_linux ]; then
         sed -i s/OS\=\"\${GRUB_DISTRIBUTOR}\ GNU\\/Linux\"/OS\=\"\${GRUB_DISTRIBUTOR}\"/ /etc/grub.d/10_linux
@@ -33,8 +33,9 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/Horizon/Continuum/ /etc/lsb-release
     sed -i s/17/18/ /etc/lsb-release
     sed -i s/MX-18RC1/MX-18/ /etc/mx-version
-    sed -i s/MX-18/MX-18.1/ /etc/mx-version
-    sed -i s/18/18.1/ /etc/lsb-release
+    sed -i s/MX-18.*_/MX-18.2_/ /etc/mx-version
+    sed -i s/18.*\\s/'18.2 '/ /etc/lsb-release
+    sed -i s/DISTRIB_RELEASE=18.*/DISTRIB_RELEASE=18.2/ /etc/lsb-release
     
     fi
     #update udev rules for optical devices (see install)
