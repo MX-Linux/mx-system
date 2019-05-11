@@ -1,3 +1,9 @@
+mx-system (19.05.02) mx; urgency=medium
+
+  * bump version number 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 11 May 2019 11:22:27 -0400
+
 mx-system (19.05.01) mx; urgency=medium
 
   * revised for 18.3 
