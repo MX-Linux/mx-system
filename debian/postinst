@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
 if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remove" ] ; then
-    apt-mark manual libelf-dev cryptsetup-modified-functions ecryptfs-utils libnss-mdns
+    #apt-mark manual 
     # fix grub menu label
     if [ -e /etc/grub.d/10_linux ]; then
         sed -i s/OS\=\"\${GRUB_DISTRIBUTOR}\ GNU\\/Linux\"/OS\=\"\${GRUB_DISTRIBUTOR}\"/ /etc/grub.d/10_linux
@@ -10,9 +10,9 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/lsb_release\ -i\ -s/lsb_release\ -d\ -s/ /etc/default/grub
     fi
     # fix man init entry to reflect sysVinit instead of systemd
-    if [ -e /usr/share/man/man8/init.8.gz ]; then
-    ln -fs /usr/share/man/man8/init.8.gz /usr/share/man/man1/init.1.gz
-    fi
+    #if [ -e /usr/share/man/man8/init.8.gz ]; then
+    #ln -fs /usr/share/man/man8/init.8.gz /usr/share/man/man1/init.1.gz
+    #fi
     #add a symlink to mx-version called antix-version, because some apps look for info from antix-version
     if [ -e /etc/mx-version ]; then
         if [ ! -e /etc/antix-version ]; then
@@ -22,22 +22,14 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         ln -frs /etc/mx-version /etc/antix-version
         fi
     fi
-    #update mx-version to latest, but only for PRE_RC, RC, and later releases
-    if [ -e /etc/mx-version ]; then
-    sed -i s/MX-17.RC1/MX-17/ /etc/mx-version
-    sed -i s/MX-17.PRE_RC1/MX-17/ /etc/mx-version
-    sed -i s/MX-17.1-RC1_/MX-17.1_/ /etc/mx-version
-    sed -i s/MX-17_/MX-17.1_/ /etc/mx-version
-    sed -i s/MX-17.1_/MX-18_/ /etc/mx-version
-    sed -i s/Horizon/Continuum/ /etc/mx-version
-    sed -i s/Horizon/Continuum/ /etc/lsb-release
-    sed -i s/17/18/ /etc/lsb-release
-    sed -i s/MX-18RC1/MX-18/ /etc/mx-version
-    sed -i s/MX-18.*_/MX-18.3_/ /etc/mx-version
-    sed -i s/18.*\\s/'18.3 '/ /etc/lsb-release
-    sed -i s/DISTRIB_RELEASE=18.*/DISTRIB_RELEASE=18.3/ /etc/lsb-release
     
-    fi
+    #update mx-version to latest, but only for PRE_RC, RC, and later releases
+    #if [ -e /etc/mx-version ]; then
+    #sed -i s/MX-18.*_/MX-18.3_/ /etc/mx-version
+    #sed -i s/18.*\\s/'18.3 '/ /etc/lsb-release
+    #sed -i s/DISTRIB_RELEASE=18.*/DISTRIB_RELEASE=18.3/ /etc/lsb-release
+    #fi
+
     #update udev rules for optical devices (see install)
     udevadm trigger --attr-match=kernel="sr[0-9]*"
     #correct mouse acceleration problem with a .conf file from /usr/share/X11/xorg.conf.d/10-evdev.conf
@@ -58,11 +50,6 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
             #only if it looks like the antiX/mx live issue file
             CHECK=$(sed '/cli-installer/!d' /etc/issue)
             if [ -n "$CHECK" ]; then
-                cp /usr/share/antiX/issue /etc/issue
-            fi
-            #change if running the mx17.1 edition, change to mx linux
-            CHECK2=$(sed '/17.1/!d' /etc/issue)
-            if [ -n "$CHECK2" ]; then
                 cp /usr/share/antiX/issue /etc/issue
             fi
         fi
