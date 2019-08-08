@@ -1,3 +1,4 @@
 *.rules etc/udev/rules.d 
 issue usr/share/antiX
 *.conf etc/sysctl.d
+os-release usr/lib

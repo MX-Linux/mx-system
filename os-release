@@ -1,0 +1,9 @@
+PRETTY_NAME="MX 19 patito feo"
+NAME="MX 19 patito feo"
+VERSION_ID="19"
+VERSION="19 patito feo"
+VERSION_CODENAME="patito feo"
+ID=MX
+HOME_URL="https://www.mxlinux.org/"
+SUPPORT_URL="https://www.mxlinux.org/support"
+BUG_REPORT_URL="https://bugs.mxlinux.org/"

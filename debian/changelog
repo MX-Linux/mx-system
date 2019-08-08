@@ -1,3 +1,9 @@
+mx-system (19.08.01) mx; urgency=medium
+
+  * fix for os-release 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 07 Aug 2019 20:21:16 -0400
+
 mx-system (19.06.01) mx; urgency=medium
 
   * buster 
