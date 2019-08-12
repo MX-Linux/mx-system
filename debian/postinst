@@ -81,9 +81,17 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         mkdir -p /usr/lib64/sane
         fi
     fi
-    
-    
-    
+
+    #remove diversion
+	if [ -n "$(dpkg-divert --list |grep mx-system)" ]; then
+	dpkg-divert --quiet                                               \
+	                               --remove                                                 \
+	                               --package mx-system      \
+	                               --rename \
+	                               /usr/lib/os-release 2>/dev/null
+	fi
+
+   
     
 fi
 
