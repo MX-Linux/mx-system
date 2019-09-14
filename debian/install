@@ -1,3 +1,4 @@
-*.rules etc/udev/rules.d 
+udev/* etc/udev/rules.d 
+xorg.d/* etc/X11/xorg.conf.d
 issue usr/share/antiX
-*.conf etc/sysctl.d
+sysctl/* etc/sysctl.d

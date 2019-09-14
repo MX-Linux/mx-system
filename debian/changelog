@@ -1,3 +1,11 @@
+mx-system (19.09.02) mx; urgency=medium
+
+  * added modified wacom udev rule
+  * added modified wacom eudev xorg conf file
+  * removed matcha-theme dependency 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 14 Sep 2019 17:47:22 -0400
+
 mx-system (19.09.01) mx; urgency=medium
 
   * temparily bring in matcha-themes as a depend for beta 
