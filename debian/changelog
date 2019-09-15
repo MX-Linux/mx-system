@@ -1,6 +1,12 @@
+mx-system (19.09.04) mx; urgency=medium
+
+  * add icon override for luckybackup 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sun, 15 Sep 2019 14:15:01 -0400
+
 mx-system (19.09.03) mx; urgency=medium
 
-  * added icons for gnome-ppp and pppoe per asqwerth 
+  * added icons for ndisgtk,gnome-ppp and pppoe per asqwerth 
 
  -- Dolphin Oracle <dolphinoracle@gmail.com>  Sun, 15 Sep 2019 11:58:49 -0400
 

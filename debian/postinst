@@ -82,6 +82,23 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         fi
     fi 
     
+    # update icons for ndisgtk
+	if [ -e "/usr/share/icons/hicolor/48x48/apps/ndisgtk.png" ]; then
+		rm /usr/share/icons/hicolor/48x48/apps/ndisgtk.png
+	fi
+	if [ -e "/usr/share/icons/hicolor/scalable/apps/ndisgtk.svg" ]; then
+		rm /usr/share/icons/hicolor/48x48/apps/ndisgtk.svg
+	fi
+	if [ -e "/usr/share/pixmaps/ndisgtk.svg" ]; then
+		cp /usr/share/pixmaps/ndisgtk.svg /usr/share/icons/hicolor/48x48/apps/ndisgtk.svg
+		cp /usr/share/pixmaps/ndisgtk.svg /usr/share/icons/hicolor/scalable/apps/ndisgtk.svg
+    fi
+    
+    ## update desktop file for luckybackup, if installed
+    if [ -e "/usr/share/applications/luckybackup.desktop" ]; then
+		cp /usr/share/mx-system/luckybackup/*.svg /usr/share/icons/hicolor/scalable/apps/
+		cp /usr/share/mx-system/luckybackup/*.desktop /usr/share/applications/
+	fi
 fi
 
 #DEBHELPER#
