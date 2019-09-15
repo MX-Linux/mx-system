@@ -30,6 +30,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #fi
 
     #update udev rules for optical devices (see install)
+    udevadm control --reload
     udevadm trigger --attr-match=kernel="sr[0-9]*"
     #correct mouse acceleration problem with a .conf file from /usr/share/X11/xorg.conf.d/10-evdev.conf
     #if [ ! -e /etc/X11/xorg.conf.d/10-evdev.conf ]; then
