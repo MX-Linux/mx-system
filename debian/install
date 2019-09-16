@@ -4,3 +4,4 @@ issue usr/share/antiX
 sysctl/* etc/sysctl.d
 icon_overrides/* usr/share/pixmaps
 luckybackup/* usr/share/mx-system/luckybackup
+luckybackup/*.svg usr/share/icons/hicolor/scalable/apps

@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remove" ] ; then
+    ## update desktop file for luckybackup, if installed
+    if [ -e "/usr/share/icons/hicolor/scalable/apps/luckybackup.svg" ]; then
+		rm /usr/share/icons/hicolor/scalable/apps/luckybackup.svg
+	fi
+fi
+
+#DEBHELPER#
