@@ -1,3 +1,15 @@
+mx-system (19.10.02) mx; urgency=medium
+
+  * maintenance  
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 19 Oct 2019 07:06:54 -0400
+
+mx-system (19.10.01) mx; urgency=medium
+
+  * add sources.list blank file 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 05 Oct 2019 14:32:40 -0400
+
 mx-system (19.09.04) mx; urgency=medium
 
   * add icon override for luckybackup 

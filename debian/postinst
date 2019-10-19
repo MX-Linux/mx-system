@@ -22,6 +22,12 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         fi
     fi
     
+    #add a sources.list if one doesn't exist
+    if [ ! -e /etc/apt/sources.list ]; then
+        touch /etc/apt/sources.list
+        echo "#this file is empty by default.  Sources are under /etc/apt/souces.list.d" >/etc/apt/sources.list
+    fi
+    
     #update mx-version to latest, but only for PRE_RC, RC, and later releases
     #if [ -e /etc/mx-version ]; then
     #sed -i s/MX-18.*_/MX-18.3_/ /etc/mx-version
@@ -82,19 +88,17 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         fi
     fi 
     
-    # update icons for ndisgtk
-	if [ -e "/usr/share/icons/hicolor/48x48/apps/ndisgtk.png" ]; then
-		rm /usr/share/icons/hicolor/48x48/apps/ndisgtk.png
-	fi
-	if [ -e "/usr/share/icons/hicolor/48x48/apps/ndisgtk.svg" ]; then
-		rm /usr/share/icons/hicolor/48x48/apps/ndisgtk.svg
-	fi
-	if [ -e "/usr/share/icons/hicolor/scalable/apps/ndisgtk.svg" ]; then
-		rm /usr/share/icons/hicolor/scalable/apps/ndisgtk.svg
-	fi
 	if [ -e "/usr/share/pixmaps/ndisgtk.svg" ]; then
 		cp /usr/share/pixmaps/ndisgtk.svg /usr/share/icons/hicolor/48x48/apps/ndisgtk.svg
 		cp /usr/share/pixmaps/ndisgtk.svg /usr/share/icons/hicolor/scalable/apps/ndisgtk.svg
+    fi
+    
+    if [ -e "/usr/share/pixmaps/gnome-ppp.png" ]; then
+		cp /usr/share/pixmaps/gnome-ppp.png /usr/share/icons/hicolor/48x48/apps/gnome-ppp.png
+    fi
+    
+    if [ -e "/usr/share/pixmaps/pppoeconf.png" ]; then
+		cp /usr/share/pixmaps/pppoeconf.png /usr/share/icons/hicolor/48x48/apps/pppoeconf.png
     fi
     
     ## update desktop file for luckybackup, if installed

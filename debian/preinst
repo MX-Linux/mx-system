@@ -5,6 +5,22 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e "/usr/share/icons/hicolor/scalable/apps/luckybackup.svg" ]; then
 		rm /usr/share/icons/hicolor/scalable/apps/luckybackup.svg
 	fi
+	
+	## update icon file for luckybackup, if installed
+    if [ -e "/usr/share/icons/hicolor/scalable/apps/luckybackup.svg" ]; then
+		rm /usr/share/icons/hicolor/scalable/apps/luckybackup.svg
+	fi
+	
+	# update icons for ndisgtk
+	if [ -e "/usr/share/icons/hicolor/48x48/apps/ndisgtk.png" ]; then
+		rm /usr/share/icons/hicolor/48x48/apps/ndisgtk.png
+	fi
+	if [ -e "/usr/share/icons/hicolor/48x48/apps/ndisgtk.svg" ]; then
+		rm /usr/share/icons/hicolor/48x48/apps/ndisgtk.svg
+	fi
+	if [ -e "/usr/share/icons/hicolor/scalable/apps/ndisgtk.svg" ]; then
+		rm /usr/share/icons/hicolor/scalable/apps/ndisgtk.svg
+	fi
 fi
 
 #DEBHELPER#
