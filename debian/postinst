@@ -100,11 +100,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e "/usr/share/pixmaps/pppoeconf.png" ]; then
 		cp /usr/share/pixmaps/pppoeconf.png /usr/share/icons/hicolor/48x48/apps/pppoeconf.png
     fi
-    
-    ## update desktop file for luckybackup, if installed
-    if [ -e "/usr/share/applications/luckybackup.desktop" ]; then
-		cp /usr/share/mx-system/luckybackup/*.desktop /usr/share/applications/
-	fi
+   
 fi
 
 #DEBHELPER#
