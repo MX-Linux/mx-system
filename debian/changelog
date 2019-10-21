@@ -1,3 +1,9 @@
+mx-system (19.10.04) mx; urgency=medium
+
+  * bump name for RC users 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sun, 20 Oct 2019 20:11:02 -0400
+
 mx-system (19.10.03) mx; urgency=medium
 
   * icon updates for gnome-ppp and pppoeconf and luckybackup

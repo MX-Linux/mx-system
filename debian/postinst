@@ -29,8 +29,9 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     fi
     
     #update mx-version to latest, but only for PRE_RC, RC, and later releases
-    #if [ -e /etc/mx-version ]; then
+    if [ -e /etc/mx-version ]; then
     #sed -i s/MX-18.*_/MX-18.3_/ /etc/mx-version
+    sed -i s/MX-19RC1.*_/MX-19_/ /etc/mx-version
     #sed -i s/18.*\\s/'18.3 '/ /etc/lsb-release
     #sed -i s/DISTRIB_RELEASE=18.*/DISTRIB_RELEASE=18.3/ /etc/lsb-release
     #fi
