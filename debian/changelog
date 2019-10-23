@@ -1,3 +1,10 @@
+mx-system (19.10.05) mx; urgency=medium
+
+  * add ndisgtk icon update
+  * bring in localize-repo-mx 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 23 Oct 2019 17:33:53 -0400
+
 mx-system (19.10.04) mx; urgency=medium
 
   * bump name for RC users 
