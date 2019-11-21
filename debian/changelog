@@ -1,3 +1,9 @@
+mx-system (19.11.01) mx; urgency=medium
+
+  * add ahs repo 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 20 Nov 2019 20:31:58 -0500
+
 mx-system (19.10.05) mx; urgency=medium
 
   * add ndisgtk icon update
