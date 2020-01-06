@@ -1,3 +1,9 @@
+mx-system (20.01.01) mx; urgency=medium
+
+  * update memtest grub entries on installed systems 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sun, 05 Jan 2020 20:43:18 -0500
+
 mx-system (19.11.02) mx; urgency=medium
 
   * remove udevadm from update 

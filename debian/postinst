@@ -1,13 +1,33 @@
 #!/bin/sh -e
 
 if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remove" ] ; then
-  # fix grub menu label
+
+    #test for live system, exit if found  (check used below)
+    LIVE_CHECK=$(df -T / |tail -n1 |awk '{print $2}')
+    
+    # fix grub menu label
     if [ -e /etc/grub.d/10_linux ]; then
         sed -i s/OS\=\"\${GRUB_DISTRIBUTOR}\ GNU\\/Linux\"/OS\=\"\${GRUB_DISTRIBUTOR}\"/ /etc/grub.d/10_linux
     fi
     if [ -e /etc/default/grub ]; then
-    sed -i s/lsb_release\ -i\ -s/lsb_release\ -d\ -s/ /etc/default/grub
+        sed -i s/lsb_release\ -i\ -s/lsb_release\ -d\ -s/ /etc/default/grub
     fi
+    
+    #update 20_memtest86+ file
+    TEST=$(sed '/\<mx-system 20.01.01\>/!d' /etc/grub.d/20_memtest86+)
+    if [ -z "$TEST" ]; then
+        cp /usr/share/mx-system/grub.d/20_memtest86+ /etc/grub.d/20_memtest86+
+        if [ "$LIVE_CHECK" = "overlay" ] || [ "$LIVE_CHECK" = "aufs" ]; then
+            echo "running live, do not update grub"
+        else
+            echo "installed system, updating grub"
+            if [ -e "/boot/grub/grub.cfg" ]; then
+            update-grub
+            fi
+        fi
+    fi
+    
+    
     # fix man init entry to reflect sysVinit instead of systemd
     #if [ -e /usr/share/man/man8/init.8.gz ]; then
     #ln -fs /usr/share/man/man8/init.8.gz /usr/share/man/man1/init.1.gz
@@ -57,8 +77,6 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #check for live system
     #check for existence so that it doesn't do anything during initial build process
     if [ -e /etc/issue ]; then
-        #test for live system, exit if found
-        LIVE_CHECK=$(df -T / |tail -n1 |awk '{print $2}')
         if [ "$LIVE_CHECK" = "overlay" ] || [ "$LIVE_CHECK" = "aufs" ]; then
             echo "running live, no change to /etc/issue"
         else
