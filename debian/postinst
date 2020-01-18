@@ -47,8 +47,9 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e /etc/mx-version ]; then
     #sed -i s/MX-18.*_/MX-18.3_/ /etc/mx-version
     sed -i s/MX-19RC1.*_/MX-19_/ /etc/mx-version
-    #sed -i s/18.*\\s/'18.3 '/ /etc/lsb-release
-    #sed -i s/DISTRIB_RELEASE=18.*/DISTRIB_RELEASE=18.3/ /etc/lsb-release
+    sed -i s/MX-19_/MX-19.1_/ /etc/mx-version
+    sed -i s/19.*\\s/'19.1 '/ /etc/lsb-release
+    sed -i s/DISTRIB_RELEASE=19.*/DISTRIB_RELEASE=19.1/ /etc/lsb-release
     fi
     
     ##add ahs repo to mx.list
