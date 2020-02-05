@@ -1,8 +1,8 @@
-mx-system (20.01.02) mx; urgency=medium
+mx-system (20.02.01) mx; urgency=medium
 
-  * mx 19.1 
+  * remove antix sources 
 
- -- Dolphin Oracle <dolphinoracle@gmail.com>  Fri, 17 Jan 2020 22:37:53 -0500
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 05 Jan 2020 18:00:00 -0500
 
 mx-system (20.01.01) mx; urgency=medium
 
