@@ -11,10 +11,11 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     fi
     if [ -e /etc/default/grub ]; then
         sed -i s/lsb_release\ -i\ -s/lsb_release\ -d\ -s/ /etc/default/grub
+        sed -i  -re 's%^(GRUB_DISTRIBUTOR=).*%\1"$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"%' /etc/default/grub
     fi
     
     #update 20_memtest86+ file
-    TEST=$(sed '/\<mx-system 20.01.01\>/!d' /etc/grub.d/20_memtest86+)
+    TEST=$(sed '/\<mx-system 20.02.02\>/!d' /etc/grub.d/20_memtest86+)
     if [ -z "$TEST" ]; then
         cp /usr/share/mx-system/grub.d/20_memtest86+ /etc/grub.d/20_memtest86+
     fi
