@@ -1,6 +1,6 @@
 mx-system (20.02.03) mx; urgency=medium
 
-  * mx19.1 strings
+  * correct antiX.list removal
 
  -- Dolphin Oracle <dolphinoracle@gmail.com>  Thu, 06 Feb 2020 19:18:54 -0500
 
