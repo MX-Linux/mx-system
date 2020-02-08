@@ -130,12 +130,11 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     
     #remove antix.list
     
-    if [ -e "/etc/apt/sources.list.d/antix.list" ]; then
+    antixfile="/etc/apt/sources.list.d/antix.list"
+    if [ -e "$antixfile" ]; then
         echo "antix and mx sources are being seperated...removing antix sources"
         echo "reload your sources (apt update) for the change to go into effect"
-        for i in $(find /etc/apt/sources.list.d/antix.list*); do
-            mv $i $i-REMOVED_BY_MX_SYSTEM--$(date +%Y%m%H%M%S).dpkg-dist
-        done
+        mv $antixfile $antixfile-REMOVED_BY_MX_SYSTEM-$(date +%Y%m%H%M%S).dpkg-dist
     fi
    
 fi
