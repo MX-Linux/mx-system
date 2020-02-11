@@ -19,9 +19,11 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     fi
     
     #update 20_memtest86+ file
-    TEST=$(sed '/\<mx-system 20.02.02\>/!d' /etc/grub.d/20_memtest86+)
-    if [ -z "$TEST" ]; then
-        cp /usr/share/mx-system/grub.d/20_memtest86+ /etc/grub.d/20_memtest86+
+    if [ -e /etc/grub.d/20_memtest86+ ];then
+        TEST=$(sed '/\<mx-system 20.02.02\>/!d' /etc/grub.d/20_memtest86+)
+        if [ -z "$TEST" ]; then
+            cp /usr/share/mx-system/grub.d/20_memtest86+ /etc/grub.d/20_memtest86+
+        fi
     fi
     
     
