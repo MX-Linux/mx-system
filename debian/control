@@ -1,7 +1,7 @@
 Source: mx-system
 Section: system
 Priority: optional
-Maintainer: Steven Pusser <stevep@mxlinux.org>
+Maintainer: dolphinoracle <dolphinoracle@gmail.com>
 Build-Depends: debhelper (>=9)
 Standards-Version: 3.9.8
 

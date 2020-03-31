@@ -138,7 +138,22 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         echo "reload your sources (apt update) for the change to go into effect"
         mv $antixfile $antixfile-REMOVED_BY_MX_SYSTEM-$(date +%Y%m%H%M%S).dpkg-dist
     fi
-   
+    
+    #remove stretch references in debian apt sources
+    if [ -e "/etc/apt/sources.list.d/debian.list" ]; then
+		sed -i s/'#stretch backports'/'#buster backports'/ /etc/apt/sources.list.d/debian.list
+	fi
+	
+	if [ -e "/etc/apt/sources.list.d/debian-stable-updates.list" ]; then
+		sed -i s/'# Debian stretch Updates'/'# Debian buster Updates'/ /etc/apt/sources.list.d/debian-stable-updates.list
+	fi
+	
+	#/etc/xdg/autostart/at-spi-dbus-bus.desktop "fix"
+	if [ -e /etc/xdg/autostart/at-spi-dbus-bus.desktop ]; then
+		cp /etc/xdg/autostart/at-spi-dbus-bus.desktop /etc/xdg/autostart/zz-at-spi-dbus-bus.desktop
+		rm /etc/xdg/autostart/at-spi-dbus-bus.desktop
+	fi
+
 fi
 
 #DEBHELPER#
