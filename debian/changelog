@@ -1,3 +1,9 @@
+mx-system (20.05.02) mx; urgency=medium
+
+  * mx 19.2 strings 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 13 May 2020 21:24:03 -0400
+
 mx-system (20.05.01) mx; urgency=medium
 
   *  updated 20memtest86+ file
