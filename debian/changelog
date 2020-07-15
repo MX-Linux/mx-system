@@ -1,3 +1,15 @@
+mx-system (20.07.01) mx; urgency=medium
+
+  * add KDE debconf configuration 
+
+ -- Dolphin Oracle <dolphin@littlebyte>  Wed, 15 Jul 2020 19:00:12 -0400
+
+mx-system (20.05.03) mx; urgency=medium
+
+  * add 57mesa_override 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sun, 24 May 2020 07:25:21 -0400
+
 mx-system (20.05.02) mx; urgency=medium
 
   * mx 19.2 strings 

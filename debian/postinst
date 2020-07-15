@@ -101,11 +101,16 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 	fi
     
     #reconfigure debconf with DEBIAN_FRONTEND to Gnome for graphical dpkg use when X available
+    #use debconf-kde-helper with KDE
     #will default back to dialog if X not available
+    #on default MX KDE iso, check for debconf-kde-helper
     if [ ! -e /etc/mxsystem_frontend.chk ]; then
-        #debconf-set-selections <<< "debconf debconf/frontend select Gnome" 
-        echo 'debconf debconf/frontend select Gnome' | debconf-set-selections
-        touch /etc/mxsystem_frontend.chk
+		if [ -e "/usr/bin/debconf-kde-helper" ]; then
+			echo 'debconf debconf/frontend select Kde' | sudo debconf-set-selections
+		else 
+			echo 'debconf debconf/frontend select Gnome' | debconf-set-selections
+        fi
+			touch /etc/mxsystem_frontend.chk
     fi
      
      #add legacy libsane folders
@@ -156,7 +161,12 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 		cp /etc/xdg/autostart/at-spi-dbus-bus.desktop /etc/xdg/autostart/zz-at-spi-dbus-bus.desktop
 		rm /etc/xdg/autostart/at-spi-dbus-bus.desktop
 	fi
-
+	
+	#update 98vboxadd_xclient
+    if [ -e /etc/X11/Xsession.d/98vboxadd-xclient ];then
+        cp /usr/share/mx-system/Xsession.d/98vboxadd-xclient /etc/X11/Xsession.d/98vboxadd-xclient
+    fi
+    
 fi
 
 #DEBHELPER#
