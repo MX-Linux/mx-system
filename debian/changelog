@@ -1,3 +1,9 @@
+mx-system (20.08.01) mx; urgency=medium
+
+  * update for KDE -RC1 string update 
+
+ -- Dolphin Oracle <dolphin@littlebyte>  Sun, 09 Aug 2020 12:40:50 -0400
+
 mx-system (20.07.01) mx; urgency=medium
 
   * add KDE debconf configuration 

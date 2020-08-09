@@ -56,6 +56,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/MX-19RC1.*_/MX-19_/ /etc/mx-version
     sed -i s/MX-19_/MX-19.1_/ /etc/mx-version
     sed -i s/MX-19.1_/MX-19.2_/ /etc/mx-version
+    sed -i s/-RC1.*_/_/ /etc/mx-version
     sed -i s/'PRETTY_NAME="MX 19 patito feo"'/'PRETTY_NAME="MX 19.1 patito feo"'/ /etc/lsb-release
     sed -i s/'PRETTY_NAME="MX 19.1 patito feo"'/'PRETTY_NAME="MX 19.2 patito feo"'/ /etc/lsb-release
     sed -i s/'DISTRIB_DESCRIPTION="MX 19 patito feo"'/'DISTRIB_DESCRIPTION="MX 19.1 patito feo"'/ /etc/lsb-release
