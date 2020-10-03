@@ -1,3 +1,9 @@
+mx-system (20.09.01) mx; urgency=medium
+
+  * revise vbox xclient script for multiple vbox versions 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 03 Oct 2020 15:32:16 -0400
+
 mx-system (20.08.01) mx; urgency=medium
 
   * update for KDE -RC1 string update 
