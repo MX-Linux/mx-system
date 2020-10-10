@@ -1,3 +1,9 @@
+mx-system (20.10.02) mx; urgency=medium
+
+  * 19.3 strings 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 10 Oct 2020 14:39:47 -0400
+
 mx-system (20.10.01) mx; urgency=medium
 
   * revise vbox xclient script for multiple vbox versions 
