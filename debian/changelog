@@ -1,3 +1,9 @@
+mx-system (20.11.01) mx; urgency=medium
+
+  * update KDE pretty name string 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 11 Nov 2020 11:47:13 -0500
+
 mx-system (20.10.05) mx; urgency=medium
 
   * final 
