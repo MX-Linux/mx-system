@@ -5,6 +5,6 @@ sysctl/* etc/sysctl.d
 icon_overrides/* usr/share/pixmaps
 #luckybackup/* usr/share/mx-system/luckybackup
 luckybackup/*.svg usr/share/icons/hicolor/scalable/apps
-grub.d/* usr/share/mx-system/grub.d
+#grub.d/* usr/share/mx-system/grub.d
 Xsession.d/* usr/share/mx-system/Xsession.d
 Xsession.d/57mesa_override etc/X11/Xsession.d

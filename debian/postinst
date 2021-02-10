@@ -17,20 +17,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e /usr/local/share/live-files/general-files/etc/default/grub ]; then
         sed -i  -re 's%^(GRUB_DISTRIBUTOR=).*%\1"$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"%' /usr/local/share/live-files/general-files/etc/default/grub
     fi
-    
-    #update 20_memtest86+ file
-    if [ -e /etc/grub.d/20_memtest86+ ];then
-        TEST=$(sed '/\<mx-system 20.05.01\>/!d' /etc/grub.d/20_memtest86+)
-        if [ -z "$TEST" ]; then
-            cp /usr/share/mx-system/grub.d/20_memtest86+ /etc/grub.d/20_memtest86+
-        fi
-    fi
-    
-    
-    # fix man init entry to reflect sysVinit instead of systemd
-    #if [ -e /usr/share/man/man8/init.8.gz ]; then
-    #ln -fs /usr/share/man/man8/init.8.gz /usr/share/man/man1/init.1.gz
-    #fi
+
     #add a symlink to mx-version called antix-version, because some apps look for info from antix-version
     if [ -e /etc/mx-version ]; then
         if [ ! -e /etc/antix-version ]; then
@@ -41,9 +28,6 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         fi
     fi
     
-    #mark localize-repo-mx as manually installed
-    apt-mark manual localize-repo-mx
-    
     #add a sources.list if one doesn't exist
     if [ ! -e /etc/apt/sources.list ]; then
         touch /etc/apt/sources.list
@@ -51,41 +35,13 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     fi
     
     #update mx-version to latest, but only for PRE_RC, RC, and later releases
-    if [ -e /etc/mx-version ]; then
-    #sed -i s/MX-18.*_/MX-18.3_/ /etc/mx-version
-    sed -i s/MX-19RC1.*_/MX-19_/ /etc/mx-version
-    sed -i s/MX-19_/MX-19.1_/ /etc/mx-version
-    sed -i s/MX-19.1_/MX-19.2_/ /etc/mx-version
-    sed -i s/MX-19.2_/MX-19.3_/ /etc/mx-version
-    sed -i s/-RC1.*_/_/ /etc/mx-version
-    sed -i s/_preview1_/_/ /etc/mx-version
-    sed -i s/_preview2_/_/ /etc/mx-version
-    sed -i s/_preview3_/_/ /etc/mx-version
-    sed -i s/_RC1_/_/ /etc/mx-version
-    sed -i s/'PRETTY_NAME="MX 19 patito feo"'/'PRETTY_NAME="MX 19.1 patito feo"'/ /etc/lsb-release
-    sed -i s/'PRETTY_NAME="MX 19.1 patito feo"'/'PRETTY_NAME="MX 19.2 patito feo"'/ /etc/lsb-release
-    sed -i s/'PRETTY_NAME="MX 19.2 patito feo"'/'PRETTY_NAME="MX 19.3 patito feo"'/ /etc/lsb-release
-    sed -i s/'DISTRIB_DESCRIPTION="MX 19 patito feo"'/'DISTRIB_DESCRIPTION="MX 19.1 patito feo"'/ /etc/lsb-release
-    sed -i s/'DISTRIB_DESCRIPTION="MX 19.1 patito feo"'/'DISTRIB_DESCRIPTION="MX 19.2 patito feo"'/ /etc/lsb-release
-    sed -i s/'DISTRIB_DESCRIPTION="MX 19.2 patito feo"'/'DISTRIB_DESCRIPTION="MX 19.3 patito feo"'/ /etc/lsb-release
-    sed -i s/'DISTRIB_DESCRIPTION="MX 19.2 KDE patito feo"'/'DISTRIB_DESCRIPTION="MX 19.3 KDE patito feo"'/ /etc/lsb-release
-    sed -i s/DISTRIB_RELEASE.*/'DISTRIB_RELEASE=19.3 '/ /etc/lsb-release
-    fi
-    
-    ##add ahs repo to mx.list
-    FILE="/etc/apt/sources.list.d/mx.list"
-    # if the entry is present, don't do anything
-    # add disabled in any case
-    if [ -z "$(grep "mx" "$FILE" |grep buster |grep ahs)" ]; then
-        echo "" >> "$FILE"
-        echo "#ahs hardware stack repo" >> "$FILE"
-        echo "#deb $(cat /etc/apt/sources.list.d/mx.list |grep "main" |cut -d" " -f2) buster ahs" >> "$FILE"
-    fi 
-
-    #update udev rules for optical devices (see install)
-    #udevadm control --reload
-    #udevadm trigger --attr-match=kernel="sr[0-9]*"
-        
+    #if [ -e /etc/mx-version ]; then
+    #sed -i s/_RC1_/_/ /etc/mx-version
+    #sed -i s/'PRETTY_NAME="MX 21 xxxxx"'/'PRETTY_NAME="MX 21.1 xxxxx"'/ /etc/lsb-release
+    #sed -i s/'DISTRIB_DESCRIPTION="MX 21 xxxxxx"'/'DISTRIB_DESCRIPTION="MX 21.1 xxxxxx"'/ /etc/lsb-release
+    #sed -i s/DISTRIB_RELEASE.*/'DISTRIB_RELEASE=21.1 '/ /etc/lsb-release
+    #fi
+      
     #update installed /etc/issue
     #check for live system
     #check for existence so that it doesn't do anything during initial build process
@@ -147,24 +103,6 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 		cp /usr/share/pixmaps/pppoeconf.png /usr/share/icons/hicolor/48x48/apps/pppoeconf.png
     fi
     
-    #remove antix.list
-    
-    antixfile="/etc/apt/sources.list.d/antix.list"
-    if [ -e "$antixfile" ]; then
-        echo "antix and mx sources are being seperated...removing antix sources"
-        echo "reload your sources (apt update) for the change to go into effect"
-        mv $antixfile $antixfile-REMOVED_BY_MX_SYSTEM-$(date +%Y%m%H%M%S).dpkg-dist
-    fi
-    
-    #remove stretch references in debian apt sources
-    if [ -e "/etc/apt/sources.list.d/debian.list" ]; then
-		sed -i s/'#stretch backports'/'#buster backports'/ /etc/apt/sources.list.d/debian.list
-	fi
-	
-	if [ -e "/etc/apt/sources.list.d/debian-stable-updates.list" ]; then
-		sed -i s/'# Debian stretch Updates'/'# Debian buster Updates'/ /etc/apt/sources.list.d/debian-stable-updates.list
-	fi
-	
 	#/etc/xdg/autostart/at-spi-dbus-bus.desktop "fix"
 	if [ -e /etc/xdg/autostart/at-spi-dbus-bus.desktop ]; then
 		cp /etc/xdg/autostart/at-spi-dbus-bus.desktop /etc/xdg/autostart/zz-at-spi-dbus-bus.desktop

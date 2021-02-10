@@ -1,3 +1,9 @@
+mx-system (21.02.01) mx; urgency=medium
+
+  * initial mx-21 setup 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Tue, 09 Feb 2021 19:36:05 -0500
+
 mx-system (20.11.01) mx; urgency=medium
 
   * update KDE pretty name string 
