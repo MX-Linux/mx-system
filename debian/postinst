@@ -69,7 +69,9 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/'DISTRIB_DESCRIPTION="MX 19.1 patito feo"'/'DISTRIB_DESCRIPTION="MX 19.2 patito feo"'/ /etc/lsb-release
     sed -i s/'DISTRIB_DESCRIPTION="MX 19.2 patito feo"'/'DISTRIB_DESCRIPTION="MX 19.3 patito feo"'/ /etc/lsb-release
     sed -i s/'DISTRIB_DESCRIPTION="MX 19.2 KDE patito feo"'/'DISTRIB_DESCRIPTION="MX 19.3 KDE patito feo"'/ /etc/lsb-release
-    sed -i s/DISTRIB_RELEASE.*/'DISTRIB_RELEASE=19.3 '/ /etc/lsb-release
+    sed -i s/'DISTRIB_DESCRIPTION="MX 19.3 patito feo"'/'DISTRIB_DESCRIPTION="MX 19.4 patito feo"'/ /etc/lsb-release
+    sed -i s/'DISTRIB_DESCRIPTION="MX 19.3 KDE patito feo"'/'DISTRIB_DESCRIPTION="MX 19.4 KDE patito feo"'/ /etc/lsb-release
+    sed -i s/DISTRIB_RELEASE.*/'DISTRIB_RELEASE=19.4 '/ /etc/lsb-release
     fi
     
     ##add ahs repo to mx.list
