@@ -57,6 +57,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/MX-19_/MX-19.1_/ /etc/mx-version
     sed -i s/MX-19.1_/MX-19.2_/ /etc/mx-version
     sed -i s/MX-19.2_/MX-19.3_/ /etc/mx-version
+    sed -i s/MX-19.3_/MX-19.4_/ /etc/mx-version
     sed -i s/-RC1.*_/_/ /etc/mx-version
     sed -i s/_preview1_/_/ /etc/mx-version
     sed -i s/_preview2_/_/ /etc/mx-version
@@ -66,6 +67,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/'PRETTY_NAME="MX 19.1 patito feo"'/'PRETTY_NAME="MX 19.2 patito feo"'/ /etc/lsb-release
     sed -i s/'PRETTY_NAME="MX 19.2 patito feo"'/'PRETTY_NAME="MX 19.3 patito feo"'/ /etc/lsb-release
     sed -i s/'PRETTY_NAME="MX 19.3 patito feo"'/'PRETTY_NAME="MX 19.4 patito feo"'/ /etc/lsb-release
+    sed -i s/'PRETTY_NAME="MX 19.3 KDE patito feo"'/'PRETTY_NAME="MX 19.4 KDE patito feo"'/ /etc/lsb-release
     sed -i s/'DISTRIB_DESCRIPTION="MX 19 patito feo"'/'DISTRIB_DESCRIPTION="MX 19.1 patito feo"'/ /etc/lsb-release
     sed -i s/'DISTRIB_DESCRIPTION="MX 19.1 patito feo"'/'DISTRIB_DESCRIPTION="MX 19.2 patito feo"'/ /etc/lsb-release
     sed -i s/'DISTRIB_DESCRIPTION="MX 19.2 patito feo"'/'DISTRIB_DESCRIPTION="MX 19.3 patito feo"'/ /etc/lsb-release
