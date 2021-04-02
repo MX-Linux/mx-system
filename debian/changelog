@@ -1,3 +1,10 @@
+mx-system (20.11.02+2) mx; urgency=medium
+
+  *  adjust memtest, system setup grub menu entries for UEFI 
+  *  added LVM_SUPPRESS_FD_WARNINGS=true for os-prober
+
+ -- fehlix <fehlix@mxlinux.org>  Fri, 02 Apr 2021 17:54:03 -0400
+
 mx-system (20.11.02+1) mx; urgency=medium
 
   *  correct version strings for 19.4
