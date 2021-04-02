@@ -20,13 +20,25 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     
     #update 20_memtest86+ file
     if [ -e /etc/grub.d/20_memtest86+ ];then
-        TEST=$(sed '/\<mx-system 20.05.01\>/!d' /etc/grub.d/20_memtest86+)
-        if [ -z "$TEST" ]; then
+        if ! grep -sq 'mx-system 20.11.02' /etc/grub.d/20_memtest86+; then
             cp /usr/share/mx-system/grub.d/20_memtest86+ /etc/grub.d/20_memtest86+
         fi
     fi
     
+    #update 30_uefi-firmware file
+    if [ -e /etc/grub.d/30_uefi-firmware ];then
+        if ! grep -sq 'mx-system 20.11.02' /etc/grub.d/30_uefi-firmware; then
+            cp /usr/share/mx-system/grub.d/30_uefi-firmware /etc/grub.d/30_uefi-firmware
+        fi
+    fi
     
+    #update 30_os-prober file
+    if [ -e /etc/grub.d/30_os-prober ];then
+        if ! grep -sq 'mx-system 20.11.02' /etc/grub.d/30_os-prober; then
+            cp /usr/share/mx-system/grub.d/30_os-prober /etc/grub.d/30_os-prober
+        fi
+    fi
+        
     # fix man init entry to reflect sysVinit instead of systemd
     #if [ -e /usr/share/man/man8/init.8.gz ]; then
     #ln -fs /usr/share/man/man8/init.8.gz /usr/share/man/man1/init.1.gz
