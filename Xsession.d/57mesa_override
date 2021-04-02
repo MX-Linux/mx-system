@@ -1,0 +1,15 @@
+# Set mesa override variable when intel driver is in use
+# /etc/X11/Xsession.d/57mesa-override
+#
+
+FILE="/etc/X11/xorg.conf.d/20-intel.conf"
+if [ -e "$FILE" ]; then
+      export MESA_LOADER_DRIVER_OVERRIDE=i965
+fi
+FILE="/etc/X11/xorg.conf.d/xorg.conf"
+if [ -e "$FILE" ]; then
+    TEST=$(grep Driver "$FILE" | grep intel)
+    if [ -z "$TEST" ]; then
+        export MESA_LOADER_DRIVER_OVERRIDE=i965
+    fi
+fi

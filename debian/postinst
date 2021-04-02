@@ -1,18 +1,23 @@
 #!/bin/sh -e
 
 if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remove" ] ; then
-    apt-mark manual libelf-dev cryptsetup-modified-functions ecryptfs-utils libnss-mdns
+
+    #test for live system, exit if found  (check used below)
+    LIVE_CHECK=$(df -T / |tail -n1 |awk '{print $2}')
+    
     # fix grub menu label
     if [ -e /etc/grub.d/10_linux ]; then
         sed -i s/OS\=\"\${GRUB_DISTRIBUTOR}\ GNU\\/Linux\"/OS\=\"\${GRUB_DISTRIBUTOR}\"/ /etc/grub.d/10_linux
     fi
     if [ -e /etc/default/grub ]; then
-    sed -i s/lsb_release\ -i\ -s/lsb_release\ -d\ -s/ /etc/default/grub
+        sed -i s/lsb_release\ -i\ -s/lsb_release\ -d\ -s/ /etc/default/grub
+        sed -i  -re 's%^(GRUB_DISTRIBUTOR=).*%\1"$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"%' /etc/default/grub
     fi
-    # fix man init entry to reflect sysVinit instead of systemd
-    if [ -e /usr/share/man/man8/init.8.gz ]; then
-    ln -fs /usr/share/man/man8/init.8.gz /usr/share/man/man1/init.1.gz
+    
+    if [ -e /usr/local/share/live-files/general-files/etc/default/grub ]; then
+        sed -i  -re 's%^(GRUB_DISTRIBUTOR=).*%\1"$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"%' /usr/local/share/live-files/general-files/etc/default/grub
     fi
+
     #add a symlink to mx-version called antix-version, because some apps look for info from antix-version
     if [ -e /etc/mx-version ]; then
         if [ ! -e /etc/antix-version ]; then
@@ -22,35 +27,25 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         ln -frs /etc/mx-version /etc/antix-version
         fi
     fi
+    
+    #add a sources.list if one doesn't exist
+    if [ ! -e /etc/apt/sources.list ]; then
+        touch /etc/apt/sources.list
+        echo "#this file is empty by default.  Sources are under /etc/apt/souces.list.d" >/etc/apt/sources.list
+    fi
+    
     #update mx-version to latest, but only for PRE_RC, RC, and later releases
-    if [ -e /etc/mx-version ]; then
-    sed -i s/MX-17.RC1/MX-17/ /etc/mx-version
-    sed -i s/MX-17.PRE_RC1/MX-17/ /etc/mx-version
-    sed -i s/MX-17.1-RC1_/MX-17.1_/ /etc/mx-version
-    sed -i s/MX-17_/MX-17.1_/ /etc/mx-version
-    sed -i s/MX-17.1_/MX-18_/ /etc/mx-version
-    sed -i s/Horizon/Continuum/ /etc/mx-version
-    sed -i s/Horizon/Continuum/ /etc/lsb-release
-    sed -i s/17/18/ /etc/lsb-release
-    sed -i s/MX-18RC1/MX-18/ /etc/mx-version
-    sed -i s/MX-18.*_/MX-18.3_/ /etc/mx-version
-    sed -i s/18.*\\s/'18.3 '/ /etc/lsb-release
-    sed -i s/DISTRIB_RELEASE=18.*/DISTRIB_RELEASE=18.3/ /etc/lsb-release
-    
-    fi
-    #update udev rules for optical devices (see install)
-    udevadm trigger --attr-match=kernel="sr[0-9]*"
-    #correct mouse acceleration problem with a .conf file from /usr/share/X11/xorg.conf.d/10-evdev.conf
-    if [ ! -e /etc/X11/xorg.conf.d/10-evdev.conf ]; then
-    cp /usr/share/X11/xorg.conf.d/10-evdev.conf /etc/X11/xorg.conf.d/10-evdev.conf
-    fi
-    
+    #if [ -e /etc/mx-version ]; then
+    #sed -i s/_RC1_/_/ /etc/mx-version
+    #sed -i s/'PRETTY_NAME="MX 21 xxxxx"'/'PRETTY_NAME="MX 21.1 xxxxx"'/ /etc/lsb-release
+    #sed -i s/'DISTRIB_DESCRIPTION="MX 21 xxxxxx"'/'DISTRIB_DESCRIPTION="MX 21.1 xxxxxx"'/ /etc/lsb-release
+    #sed -i s/DISTRIB_RELEASE.*/'DISTRIB_RELEASE=21.1 '/ /etc/lsb-release
+    #fi
+      
     #update installed /etc/issue
     #check for live system
     #check for existence so that it doesn't do anything during initial build process
     if [ -e /etc/issue ]; then
-        #test for live system, exit if found
-        LIVE_CHECK=$(df -T / |tail -n1 |awk '{print $2}')
         if [ "$LIVE_CHECK" = "overlay" ] || [ "$LIVE_CHECK" = "aufs" ]; then
             echo "running live, no change to /etc/issue"
         else
@@ -58,11 +53,6 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
             #only if it looks like the antiX/mx live issue file
             CHECK=$(sed '/cli-installer/!d' /etc/issue)
             if [ -n "$CHECK" ]; then
-                cp /usr/share/antiX/issue /etc/issue
-            fi
-            #change if running the mx17.1 edition, change to mx linux
-            CHECK2=$(sed '/17.1/!d' /etc/issue)
-            if [ -n "$CHECK2" ]; then
                 cp /usr/share/antiX/issue /etc/issue
             fi
         fi
@@ -76,11 +66,16 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 	fi
     
     #reconfigure debconf with DEBIAN_FRONTEND to Gnome for graphical dpkg use when X available
+    #use debconf-kde-helper with KDE
     #will default back to dialog if X not available
+    #on default MX KDE iso, check for debconf-kde-helper
     if [ ! -e /etc/mxsystem_frontend.chk ]; then
-        #debconf-set-selections <<< "debconf debconf/frontend select Gnome" 
-        echo 'debconf debconf/frontend select Gnome' | debconf-set-selections
-        touch /etc/mxsystem_frontend.chk
+		if [ -e "/usr/bin/debconf-kde-helper" ]; then
+			echo 'debconf debconf/frontend select Kde' | sudo debconf-set-selections
+		else 
+			echo 'debconf debconf/frontend select Gnome' | debconf-set-selections
+        fi
+			touch /etc/mxsystem_frontend.chk
     fi
      
      #add legacy libsane folders
@@ -93,10 +88,31 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 		if [ ! -e /usr/lib64/sane ]; then
         mkdir -p /usr/lib64/sane
         fi
+    fi 
+    
+	if [ -e "/usr/share/pixmaps/ndisgtk.svg" ] && [ -e "/usr/share/pixmaps/ndisgtk.png.png" ]; then
+		cp /usr/share/pixmaps/ndisgtk.svg /usr/share/icons/hicolor/scalable/apps/ndisgtk.svg
+		cp /usr/share/pixmaps/ndisgtk.png.png /usr/share/icons/hicolor/48x48/apps/ndisgtk.png.png
     fi
     
+    if [ -e "/usr/share/pixmaps/gnome-ppp.png" ]; then
+		cp /usr/share/pixmaps/gnome-ppp.png /usr/share/icons/hicolor/48x48/apps/gnome-ppp.png
+    fi
     
+    if [ -e "/usr/share/pixmaps/pppoeconf.png" ]; then
+		cp /usr/share/pixmaps/pppoeconf.png /usr/share/icons/hicolor/48x48/apps/pppoeconf.png
+    fi
     
+	#/etc/xdg/autostart/at-spi-dbus-bus.desktop "fix"
+	if [ -e /etc/xdg/autostart/at-spi-dbus-bus.desktop ]; then
+		cp /etc/xdg/autostart/at-spi-dbus-bus.desktop /etc/xdg/autostart/zz-at-spi-dbus-bus.desktop
+		rm /etc/xdg/autostart/at-spi-dbus-bus.desktop
+	fi
+	
+	#update 98vboxadd_xclient
+    if [ -e /etc/X11/Xsession.d/98vboxadd-xclient ];then
+        cp /usr/share/mx-system/Xsession.d/98vboxadd-xclient /etc/X11/Xsession.d/98vboxadd-xclient
+    fi
     
 fi
 
