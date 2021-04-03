@@ -17,6 +17,27 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e /usr/local/share/live-files/general-files/etc/default/grub ]; then
         sed -i  -re 's%^(GRUB_DISTRIBUTOR=).*%\1"$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"%' /usr/local/share/live-files/general-files/etc/default/grub
     fi
+    
+    #update 20_memtest86+ file
+    if [ -e /etc/grub.d/20_memtest86+ ];then
+        if ! grep -sq 'mx-system 20.11.02' /etc/grub.d/20_memtest86+; then
+            cp /usr/share/mx-system/grub.d/20_memtest86+ /etc/grub.d/20_memtest86+
+        fi
+    fi
+    
+    #update 30_uefi-firmware file
+    if [ -e /etc/grub.d/30_uefi-firmware ];then
+        if ! grep -sq 'mx-system 20.11.02' /etc/grub.d/30_uefi-firmware; then
+            cp /usr/share/mx-system/grub.d/30_uefi-firmware /etc/grub.d/30_uefi-firmware
+        fi
+    fi
+    
+    #update 30_os-prober file
+    if [ -e /etc/grub.d/30_os-prober ];then
+        if ! grep -sq 'mx-system 20.11.02' /etc/grub.d/30_os-prober; then
+            cp /usr/share/mx-system/grub.d/30_os-prober /etc/grub.d/30_os-prober
+        fi
+    fi
 
     #add a symlink to mx-version called antix-version, because some apps look for info from antix-version
     if [ -e /etc/mx-version ]; then
