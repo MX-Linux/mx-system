@@ -31,7 +31,9 @@ export TEXTDOMAINDIR="${datarootdir}/locale"
 . "${datarootdir}/grub/grub-mkconfig_lib"
 
 efi_vars_dir=/sys/firmware/efi/efivars
-grep -sq ^efivarfs /proc/self/mounts || mount -t efivarfs  efivarfs  $efi_vars_dir
+if [ -e "$efi_vars_dir" ]; then 
+   grep -sq ^efivarfs /proc/self/mounts || mount -t efivarfs  efivarfs  $efi_vars_dir
+fi
 
 EFI_GLOBAL_VARIABLE=8be4df61-93ca-11d2-aa0d-00e098032b8c
 OsIndications="$efi_vars_dir/OsIndicationsSupported-$EFI_GLOBAL_VARIABLE"
