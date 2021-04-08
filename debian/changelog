@@ -1,3 +1,9 @@
+mx-system (20.11.02+3) mx; urgency=medium
+
+  * fix memtest grub files 
+
+ -- fehlix <fehlix@mxlinux.org>  Thu, 08 Apr 2021 14:11:31 -0400
+
 mx-system (20.11.02+2) mx; urgency=medium
 
   *  adjust memtest, system setup grub menu entries for UEFI 
