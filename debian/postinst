@@ -17,28 +17,46 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e /usr/local/share/live-files/general-files/etc/default/grub ]; then
         sed -i  -re 's%^(GRUB_DISTRIBUTOR=).*%\1"$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"%' /usr/local/share/live-files/general-files/etc/default/grub
     fi
-    
+    UPDATE_GRUB_FLAG=false
     #update 20_memtest86+ file
-    if [ -e /etc/grub.d/20_memtest86+ ];then
-        if ! grep -sq 'mx-system 20.11.02' /etc/grub.d/20_memtest86+; then
+    if [ -e /usr/local/share/live-files/files/etc/grub.d/20_memtest86+ ]; then
+        if ! grep -sq 'mx-system 20.11.02+3' /usr/local/share/live-files/files/etc/grub.d/20_memtest86+; then
+            cp /usr/share/mx-system/grub.d/20_memtest86+ /usr/local/share/live-files/files/etc/grub.d/20_memtest86+
+        fi
+    fi
+    if [ -e /etc/grub.d/20_memtest86+ ]; then
+        if ! grep -sq 'mx-system 20.11.02+3' /etc/grub.d/20_memtest86+; then
             cp /usr/share/mx-system/grub.d/20_memtest86+ /etc/grub.d/20_memtest86+
+            UPDATE_GRUB_FLAG=true
         fi
     fi
     
     #update 30_uefi-firmware file
-    if [ -e /etc/grub.d/30_uefi-firmware ];then
-        if ! grep -sq 'mx-system 20.11.02' /etc/grub.d/30_uefi-firmware; then
+    if [ -e /usr/local/share/live-files/files/etc/grub.d/30_uefi-firmware ]; then
+        if ! grep -sq 'mx-system 20.11.02+3' /usr/local/share/live-files/files/etc/grub.d/30_uefi-firmware; then
+            cp /usr/share/mx-system/grub.d/30_uefi-firmware /usr/local/share/live-files/files/etc/grub.d/30_uefi-firmware
+        fi
+    fi
+    if [ -e /etc/grub.d/30_uefi-firmware ]; then
+        if ! grep -sq 'mx-system 20.11.02+3' /etc/grub.d/30_uefi-firmware; then
             cp /usr/share/mx-system/grub.d/30_uefi-firmware /etc/grub.d/30_uefi-firmware
+            UPDATE_GRUB_FLAG=true
         fi
     fi
     
     #update 30_os-prober file
-    if [ -e /etc/grub.d/30_os-prober ];then
-        if ! grep -sq 'mx-system 20.11.02' /etc/grub.d/30_os-prober; then
-            cp /usr/share/mx-system/grub.d/30_os-prober /etc/grub.d/30_os-prober
+    if [ -e /usr/local/share/live-files/files/etc/grub.d/30_os-prober ]; then
+        if ! grep -sq 'mx-system 20.11.02+3' /usr/local/share/live-files/files/etc/grub.d/30_os-prober; then
+            cp /usr/share/mx-system/grub.d/30_os-prober /usr/local/share/live-files/files/etc/grub.d/30_os-prober
         fi
     fi
-        
+    if [ -e /etc/grub.d/30_os-prober ]; then
+        if ! grep -sq 'mx-system 20.11.02+3' /etc/grub.d/30_os-prober; then
+            cp /usr/share/mx-system/grub.d/30_os-prober /etc/grub.d/30_os-prober
+            UPDATE_GRUB_FLAG=true
+        fi
+    fi
+    
     # fix man init entry to reflect sysVinit instead of systemd
     #if [ -e /usr/share/man/man8/init.8.gz ]; then
     #ln -fs /usr/share/man/man8/init.8.gz /usr/share/man/man1/init.1.gz
@@ -192,6 +210,16 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e /etc/X11/Xsession.d/98vboxadd-xclient ];then
         cp /usr/share/mx-system/Xsession.d/98vboxadd-xclient /etc/X11/Xsession.d/98vboxadd-xclient
     fi
+
+    # check to run update-grub
+    if [ "$LIVE_CHECK" = "overlay" ] || [ "$LIVE_CHECK" = "aufs" ]; then
+       : # do not run update-grub on live systems
+    else
+       # run update-grub on uefi systems if needed
+       if [ "$UPDATE_GRUB_FLAG" = "true" ] && [ -e /sys/firmware/efi ]; then
+           update-grub  || :
+       fi
+     fi
     
 fi
 
