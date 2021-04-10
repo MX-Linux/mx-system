@@ -1,3 +1,10 @@
+mx-system (20.11.02+4) mx; urgency=medium
+
+  * adjust 30_uefi-firmware for preempt_rt kernels
+  * adjust tag for mx-system updates
+
+ -- fehlix <fehlix@mxlinux.org>  Sat, 10 Apr 2021 05:20:03 -0400
+
 mx-system (20.11.02+3) mx; urgency=medium
 
   * fix memtest grub files 

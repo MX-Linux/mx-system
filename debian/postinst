@@ -20,12 +20,12 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     UPDATE_GRUB_FLAG=false
     #update 20_memtest86+ file
     if [ -e /usr/local/share/live-files/files/etc/grub.d/20_memtest86+ ]; then
-        if ! grep -sq 'mx-system 20.11.02+3' /usr/local/share/live-files/files/etc/grub.d/20_memtest86+; then
+        if ! grep -sq 'mx-system 20.11.02+4' /usr/local/share/live-files/files/etc/grub.d/20_memtest86+; then
             cp /usr/share/mx-system/grub.d/20_memtest86+ /usr/local/share/live-files/files/etc/grub.d/20_memtest86+
         fi
     fi
     if [ -e /etc/grub.d/20_memtest86+ ]; then
-        if ! grep -sq 'mx-system 20.11.02+3' /etc/grub.d/20_memtest86+; then
+        if ! grep -sq 'mx-system 20.11.02+4' /etc/grub.d/20_memtest86+; then
             cp /usr/share/mx-system/grub.d/20_memtest86+ /etc/grub.d/20_memtest86+
             UPDATE_GRUB_FLAG=true
         fi
@@ -33,12 +33,12 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     
     #update 30_uefi-firmware file
     if [ -e /usr/local/share/live-files/files/etc/grub.d/30_uefi-firmware ]; then
-        if ! grep -sq 'mx-system 20.11.02+3' /usr/local/share/live-files/files/etc/grub.d/30_uefi-firmware; then
+        if ! grep -sq 'mx-system 20.11.02+4' /usr/local/share/live-files/files/etc/grub.d/30_uefi-firmware; then
             cp /usr/share/mx-system/grub.d/30_uefi-firmware /usr/local/share/live-files/files/etc/grub.d/30_uefi-firmware
         fi
     fi
     if [ -e /etc/grub.d/30_uefi-firmware ]; then
-        if ! grep -sq 'mx-system 20.11.02+3' /etc/grub.d/30_uefi-firmware; then
+        if ! grep -sq 'mx-system 20.11.02+4' /etc/grub.d/30_uefi-firmware; then
             cp /usr/share/mx-system/grub.d/30_uefi-firmware /etc/grub.d/30_uefi-firmware
             UPDATE_GRUB_FLAG=true
         fi
@@ -46,12 +46,12 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     
     #update 30_os-prober file
     if [ -e /usr/local/share/live-files/files/etc/grub.d/30_os-prober ]; then
-        if ! grep -sq 'mx-system 20.11.02+3' /usr/local/share/live-files/files/etc/grub.d/30_os-prober; then
+        if ! grep -sq 'mx-system 20.11.02+4' /usr/local/share/live-files/files/etc/grub.d/30_os-prober; then
             cp /usr/share/mx-system/grub.d/30_os-prober /usr/local/share/live-files/files/etc/grub.d/30_os-prober
         fi
     fi
     if [ -e /etc/grub.d/30_os-prober ]; then
-        if ! grep -sq 'mx-system 20.11.02+3' /etc/grub.d/30_os-prober; then
+        if ! grep -sq 'mx-system 20.11.02+4' /etc/grub.d/30_os-prober; then
             cp /usr/share/mx-system/grub.d/30_os-prober /etc/grub.d/30_os-prober
             UPDATE_GRUB_FLAG=true
         fi
