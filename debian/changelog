@@ -1,4 +1,4 @@
-mx-system (20.04.03mx21) mx; urgency=medium
+mx-system (21.04.03mx21) mx; urgency=medium
 
   * adjust 30_uefi-firmware for preempt_rt kernels
   * adjust tag for mx-system updates
