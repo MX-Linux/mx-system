@@ -1,7 +1,7 @@
 #! /bin/sh
 
 #tag for mx-system update
-#mx-system 20.11.02+3
+#mx-system 20.11.02+4
 
 set -e
 
@@ -32,7 +32,7 @@ export TEXTDOMAINDIR="${datarootdir}/locale"
 
 efi_vars_dir=/sys/firmware/efi/efivars
 if [ -e "$efi_vars_dir" ]; then 
-   grep -sq ^efivarfs /proc/self/mounts || mount -t efivarfs  efivarfs  $efi_vars_dir
+   grep -sq ^efivarfs /proc/self/mounts || mount -t efivarfs  efivarfs  $efi_vars_dir || :
 fi
 
 EFI_GLOBAL_VARIABLE=8be4df61-93ca-11d2-aa0d-00e098032b8c
