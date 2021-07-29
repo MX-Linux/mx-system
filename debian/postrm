@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#DEBHELPER#
+
+# postrm script for mx-system
+
+#set -e
+
+case "$1" in
+  purge|remove) dpkg-divert --quiet                                               \
+                            --remove                                              \
+                            --package mx-system               \
+                            --rename                                              \
+                            --divert /usr/share/applications/conky.desktop.dpkg-dist \
+                             /usr/share/applications/conky.desktop
+                ;;
+
+             *) :
+                ;;
+esac 
+
+exit 0

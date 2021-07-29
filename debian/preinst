@@ -17,6 +17,20 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 	if [ -e "/usr/share/icons/hicolor/scalable/apps/ndisgtk.svg" ]; then
 		rm /usr/share/icons/hicolor/scalable/apps/ndisgtk.svg
 	fi
+
 fi
+
+case "$1" in
+  install|upgrade) dpkg-divert --quiet                                               \
+                               --add                                                 \
+                               --package mx-system              \
+                               --rename                                              \
+                               --divert /usr/share/applications/conky.desktop.dpkg-dist \
+                               /usr/share/applications/conky.desktop
+                   ;;
+
+                *) :
+                   ;;
+esac 
 
 #DEBHELPER#
