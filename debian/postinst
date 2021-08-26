@@ -74,6 +74,14 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         echo "#this file is empty by default.  Sources are under /etc/apt/souces.list.d" >/etc/apt/sources.list
     fi
     
+    #correct security repo
+    if [ -n "$(grep beta /etc/mx-version)"  ]; then
+		if [ -e "/etc/apt/sources.list.d/debian.list" ]; then
+			sed -i s+'http://deb.debian.org/debian-security bullseye/updates'+'http://security.debian.org/debian-security bullseye-security'+ /etc/apt/sources.list.d/debian.list
+			sed -i '/debian-security/s/^#[[:space:]]//g' /etc/apt/sources.list.d/debian.list
+		fi
+    fi
+    
     #update mx-version to latest, but only for PRE_RC, RC, and later releases
     #if [ -e /etc/mx-version ]; then
     #sed -i s/_RC1_/_/ /etc/mx-version
