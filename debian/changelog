@@ -1,3 +1,10 @@
+mx-system (21.10.01mx21) mx; urgency=medium
+
+  * update strings for mx19 upgraders
+  * update strings for mx21 beta and rc users
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 06 Oct 2021 12:32:03 -0400
+
 mx-system (21.08.01mx21) mx; urgency=medium
 
   * correct and activate security repo on betas
