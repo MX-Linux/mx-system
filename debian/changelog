@@ -1,3 +1,9 @@
+mx-system (21.10.02mx21) mx; urgency=medium
+
+  * create /etc/machine-id from dbus machine-id if not present 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Mon, 11 Oct 2021 19:52:44 -0400
+
 mx-system (21.10.01mx21) mx; urgency=medium
 
   * update strings for mx19 upgraders

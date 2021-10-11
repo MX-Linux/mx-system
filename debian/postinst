@@ -74,6 +74,13 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         echo "#this file is empty by default.  Sources are under /etc/apt/souces.list.d" >/etc/apt/sources.list
     fi
     
+    #make /etc/machine-id from /var/lib/dbus/machine-id if not present
+    if [ ! -e /etc/machine-id ]; then
+    	if [ -e /var/lib/dbus/machine-id ]; then
+    		cp /var/lib/dbus/machine-id /etc/machine-id
+    	fi
+    fi
+    
     #correct security repo
     if [ -n "$(grep beta /etc/mx-version)"  ]; then
 		if [ -e "/etc/apt/sources.list.d/debian.list" ]; then
@@ -83,25 +90,25 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     fi
     
 #update mx-version to latest for MX19, beta, and RC and later
-    if [ -e /etc/mx-version ]; then
+    #if [ -e /etc/mx-version ]; then
     
     #Handle update from mx19 users
-    sed -i s/'patito feo'/'Wildflower'/ /etc/mx-version
-    sed -i s/"MX-19".*"_"/"MX-21_"/ /etc/mx-version
-    sed -i s/'PRETTY_NAME="MX 19.*"'/'PRETTY_NAME="MX 21 Wildflower"'/ /etc/lsb-release
-    sed -i s/"DISTRIB_RELEASE=19".*/'DISTRIB_RELEASE=21'/ /etc/lsb-release
-    sed -i s/'DISTRIB_CODENAME="patito feo"'/'DISTRIB_CODENAME="Wildflower"'/ /etc/lsb-release
-    sed -i s/DISTRIB_DESCRIPTION="MX 19.*"/DISTRIB_DESCRIPTION="MX 21 Wildflower"/ /etc/lsb-release
+    #sed -i s/'patito feo'/'Wildflower'/ /etc/mx-version
+    #sed -i s/"MX-19".*"_"/"MX-21_"/ /etc/mx-version
+    #sed -i s/'PRETTY_NAME="MX 19.*"'/'PRETTY_NAME="MX 21 Wildflower"'/ /etc/lsb-release
+    #sed -i s/"DISTRIB_RELEASE=19".*/'DISTRIB_RELEASE=21'/ /etc/lsb-release
+    #sed -i s/'DISTRIB_CODENAME="patito feo"'/'DISTRIB_CODENAME="Wildflower"'/ /etc/lsb-release
+    #sed -i s/DISTRIB_DESCRIPTION="MX 19.*"/DISTRIB_DESCRIPTION="MX 21 Wildflower"/ /etc/lsb-release
     #handle update from beta and rc users
-    sed -i s/_beta.*_/_/ /etc/mx-version
-    sed -i s/_RC.*_/_/ /etc/mx-version
-    sed -i s/_rc.*_/_/ /etc/mx-version
+    #sed -i s/_beta.*_/_/ /etc/mx-version
+    #sed -i s/_RC.*_/_/ /etc/mx-version
+    #sed -i s/_rc.*_/_/ /etc/mx-version
     #future updates
     #sed -i s/MX-21_/MX-21.1_/ /etc/mx-version
     #sed -i s/'PRETTY_NAME="MX 21 Wildflower"'/'PRETTY_NAME="MX 21.1 Wildflower"'/ /etc/lsb-release
     #sed -i s/'DISTRIB_DESCRIPTION="MX 21 Wildflower"'/'DISTRIB_DESCRIPTION="MX 21.1 Wildflower"'/ /etc/lsb-release
     #sed -i s/DISTRIB_RELEASE.*/'DISTRIB_RELEASE=21.1 '/ /etc/lsb-release
-    fi
+    #fi
       
     #update installed /etc/issue
     #check for live system
