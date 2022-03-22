@@ -7,16 +7,23 @@
 #set -e
 
 case "$1" in
-  purge|remove) dpkg-divert --quiet                                               \
-                            --remove                                              \
-                            --package mx-system               \
-                            --rename                                              \
-                            --divert /usr/share/applications/conky.desktop.dpkg-dist \
-                             /usr/share/applications/conky.desktop
-                ;;
+  purge|remove)
+    for F in \
+        /usr/share/applications/conky.desktop       \
+        /usr/share/themes/Clearlooks/gtk-2.0/gtkrc  \
+        /usr/share/themes/Crux/gtk-2.0/gtkrc        \
+        /usr/share/themes/Industrial/gtk-2.0/gtkrc  \
+        /usr/share/themes/Mist/gtk-2.0/gtkrc        \
+        /usr/share/themes/Redmond/gtk-2.0/gtkrc     \
+        /usr/share/themes/ThinIce/gtk-2.0/gtkrc;
+    do
+        dpkg-divert --quiet --package mx-system --rename \
+                    --divert $F.dpkg-dist --remove $F || :
+    done
+  ;;
+  *) :
+  ;;
 
-             *) :
-                ;;
-esac 
+esac
 
 exit 0

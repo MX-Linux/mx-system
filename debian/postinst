@@ -4,7 +4,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 
     #test for live system, exit if found  (check used below)
     LIVE_CHECK=$(df -T / |tail -n1 |awk '{print $2}')
-    
+
     # fix grub menu label
     if [ -e /etc/grub.d/10_linux ]; then
         sed -i s/OS\=\"\${GRUB_DISTRIBUTOR}\ GNU\\/Linux\"/OS\=\"\${GRUB_DISTRIBUTOR}\"/ /etc/grub.d/10_linux
@@ -13,11 +13,11 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         sed -i s/lsb_release\ -i\ -s/lsb_release\ -d\ -s/ /etc/default/grub
         sed -i  -re 's%^(GRUB_DISTRIBUTOR=).*%\1"$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"%' /etc/default/grub
     fi
-    
+
     if [ -e /usr/local/share/live-files/general-files/etc/default/grub ]; then
         sed -i  -re 's%^(GRUB_DISTRIBUTOR=).*%\1"$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"%' /usr/local/share/live-files/general-files/etc/default/grub
     fi
-    
+
     UPDATE_GRUB_FLAG=false
     #update 20_memtest86+ file
     if [ -e /usr/local/share/live-files/files/etc/grub.d/20_memtest86+ ]; then
@@ -31,7 +31,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
             UPDATE_GRUB_FLAG=true
         fi
     fi
-    
+
     #update 30_uefi-firmware file
     if [ -e /usr/local/share/live-files/files/etc/grub.d/30_uefi-firmware ]; then
         if ! grep -sq 'mx-system 20.11.02+4' /usr/local/share/live-files/files/etc/grub.d/30_uefi-firmware; then
@@ -44,7 +44,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
             UPDATE_GRUB_FLAG=true
         fi
     fi
-    
+
     #update 30_os-prober file
     if [ -e /usr/local/share/live-files/files/etc/grub.d/30_os-prober ]; then
         if ! grep -sq 'mx-system 20.11.02+4' /usr/local/share/live-files/files/etc/grub.d/30_os-prober; then
@@ -67,31 +67,31 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         ln -frs /etc/mx-version /etc/antix-version
         fi
     fi
-    
+
     #add a sources.list if one doesn't exist
     if [ ! -e /etc/apt/sources.list ]; then
         touch /etc/apt/sources.list
         echo "#this file is empty by default.  Sources are under /etc/apt/souces.list.d" >/etc/apt/sources.list
     fi
-    
+
     #make /etc/machine-id from /var/lib/dbus/machine-id if not present
     if [ ! -e /etc/machine-id ]; then
-    	if [ -e /var/lib/dbus/machine-id ]; then
-    		cp /var/lib/dbus/machine-id /etc/machine-id
-    	fi
+        if [ -e /var/lib/dbus/machine-id ]; then
+            cp /var/lib/dbus/machine-id /etc/machine-id
+        fi
     fi
-    
+
     #correct security repo
     if [ -n "$(grep beta /etc/mx-version)"  ]; then
-		if [ -e "/etc/apt/sources.list.d/debian.list" ]; then
-			sed -i s+'http://deb.debian.org/debian-security bullseye/updates'+'http://security.debian.org/debian-security bullseye-security'+ /etc/apt/sources.list.d/debian.list
-			sed -i '/debian-security/s/^#[[:space:]]//g' /etc/apt/sources.list.d/debian.list
-		fi
+        if [ -e "/etc/apt/sources.list.d/debian.list" ]; then
+            sed -i s+'http://deb.debian.org/debian-security bullseye/updates'+'http://security.debian.org/debian-security bullseye-security'+ /etc/apt/sources.list.d/debian.list
+            sed -i '/debian-security/s/^#[[:space:]]//g' /etc/apt/sources.list.d/debian.list
+        fi
     fi
-    
+
 #update mx-version to latest for MX19, beta, and RC and later
     if [ -e /etc/mx-version ]; then
-    
+
     #Handle update from mx19 users
     sed -i s/'patito feo'/'Wildflower'/ /etc/mx-version
     sed -i s/"MX-19".*"_"/"MX-21_"/ /etc/mx-version
@@ -109,7 +109,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #sed -i s/'DISTRIB_DESCRIPTION="MX 21 Wildflower"'/'DISTRIB_DESCRIPTION="MX 21.1 Wildflower"'/ /etc/lsb-release
     #sed -i s/DISTRIB_RELEASE.*/'DISTRIB_RELEASE=21.1 '/ /etc/lsb-release
     fi
-      
+
     #update installed /etc/issue
     #check for live system
     #check for existence so that it doesn't do anything during initial build process
@@ -125,63 +125,76 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
             fi
         fi
     fi
-    
+
     ##add vmd to /etc/initramfs-tools/modules if its not already there
     VMD_CHECK=$(sed '/\<vmd\>/!d' /etc/initramfs-tools/modules)
     if [ ! -n "$VMD_CHECK" ]; then
-		echo "adding vmd modules to /etc/initramfs-tools/modules"
-		echo "vmd" >> /etc/initramfs-tools/modules
-	fi
-    
+        echo "adding vmd modules to /etc/initramfs-tools/modules"
+        echo "vmd" >> /etc/initramfs-tools/modules
+    fi
+
     #reconfigure debconf with DEBIAN_FRONTEND to Gnome for graphical dpkg use when X available
     #use debconf-kde-helper with KDE
     #will default back to dialog if X not available
     #on default MX KDE iso, check for debconf-kde-helper
     if [ ! -e /etc/mxsystem_frontend.chk ]; then
-		if [ -e "/usr/bin/debconf-kde-helper" ]; then
-			echo 'debconf debconf/frontend select Kde' | sudo debconf-set-selections
-		else 
-			echo 'debconf debconf/frontend select Gnome' | debconf-set-selections
+        if [ -e "/usr/bin/debconf-kde-helper" ]; then
+            echo 'debconf debconf/frontend select Kde' | sudo debconf-set-selections
+        else
+            echo 'debconf debconf/frontend select Gnome' | debconf-set-selections
         fi
-			touch /etc/mxsystem_frontend.chk
+            touch /etc/mxsystem_frontend.chk
     fi
-     
+
      #add legacy libsane folders
-     
+
     if [ ! -e /lib/sane ]; then
         mkdir -p /usr/lib/sane
     fi
-    
-	if [ "$(dpkg --print-architecture)" = "amd64" ]; then
-		if [ ! -e /usr/lib64/sane ]; then
+
+    if [ "$(dpkg --print-architecture)" = "amd64" ]; then
+        if [ ! -e /usr/lib64/sane ]; then
         mkdir -p /usr/lib64/sane
         fi
-    fi 
-    
-	if [ -e "/usr/share/pixmaps/ndisgtk.svg" ] && [ -e "/usr/share/pixmaps/ndisgtk.png.png" ]; then
-		cp /usr/share/pixmaps/ndisgtk.svg /usr/share/icons/hicolor/scalable/apps/ndisgtk.svg
-		cp /usr/share/pixmaps/ndisgtk.png.png /usr/share/icons/hicolor/48x48/apps/ndisgtk.png.png
     fi
-    
+
+    if [ -e "/usr/share/pixmaps/ndisgtk.svg" ] && [ -e "/usr/share/pixmaps/ndisgtk.png.png" ]; then
+        cp /usr/share/pixmaps/ndisgtk.svg /usr/share/icons/hicolor/scalable/apps/ndisgtk.svg
+        cp /usr/share/pixmaps/ndisgtk.png.png /usr/share/icons/hicolor/48x48/apps/ndisgtk.png.png
+    fi
+
     if [ -e "/usr/share/pixmaps/gnome-ppp.png" ]; then
-		cp /usr/share/pixmaps/gnome-ppp.png /usr/share/icons/hicolor/48x48/apps/gnome-ppp.png
+        cp /usr/share/pixmaps/gnome-ppp.png /usr/share/icons/hicolor/48x48/apps/gnome-ppp.png
     fi
-    
+
     if [ -e "/usr/share/pixmaps/pppoeconf.png" ]; then
-		cp /usr/share/pixmaps/pppoeconf.png /usr/share/icons/hicolor/48x48/apps/pppoeconf.png
+        cp /usr/share/pixmaps/pppoeconf.png /usr/share/icons/hicolor/48x48/apps/pppoeconf.png
     fi
-    
-	#/etc/xdg/autostart/at-spi-dbus-bus.desktop "fix"
-	if [ -e /etc/xdg/autostart/at-spi-dbus-bus.desktop ]; then
-		cp /etc/xdg/autostart/at-spi-dbus-bus.desktop /etc/xdg/autostart/zz-at-spi-dbus-bus.desktop
-		rm /etc/xdg/autostart/at-spi-dbus-bus.desktop
-	fi
-	
-	#update 98vboxadd_xclient
+
+    #/etc/xdg/autostart/at-spi-dbus-bus.desktop "fix"
+    if [ -e /etc/xdg/autostart/at-spi-dbus-bus.desktop ]; then
+        cp /etc/xdg/autostart/at-spi-dbus-bus.desktop /etc/xdg/autostart/zz-at-spi-dbus-bus.desktop
+        rm /etc/xdg/autostart/at-spi-dbus-bus.desktop
+    fi
+
+    #update 98vboxadd_xclient
     if [ -e /etc/X11/Xsession.d/98vboxadd-xclient ];then
         cp /usr/share/mx-system/Xsession.d/98vboxadd-xclient /etc/X11/Xsession.d/98vboxadd-xclient
     fi
-    
+
+    # divert gtk2-engines themes
+    for F in \
+        /usr/share/themes/Clearlooks/gtk-2.0/gtkrc  \
+        /usr/share/themes/Crux/gtk-2.0/gtkrc        \
+        /usr/share/themes/Industrial/gtk-2.0/gtkrc  \
+        /usr/share/themes/Mist/gtk-2.0/gtkrc        \
+        /usr/share/themes/Redmond/gtk-2.0/gtkrc     \
+        /usr/share/themes/ThinIce/gtk-2.0/gtkrc
+    do
+      dpkg-divert --quiet --package mx-system --rename \
+                  --divert $F.dpkg-dist --add $F  || :
+    done
+
 fi
 
 #DEBHELPER#
