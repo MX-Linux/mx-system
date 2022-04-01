@@ -138,12 +138,12 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #will default back to dialog if X not available
     #on default MX KDE iso, check for debconf-kde-helper
     if [ ! -e /etc/mxsystem_frontend.chk ]; then
-        if [ -e "/usr/bin/debconf-kde-helper" ]; then
-            echo 'debconf debconf/frontend select Kde' | sudo debconf-set-selections
+        if dpkg -l | grep -q debconf-kde-helper; then
+            echo 'debconf debconf/frontend select Kde'   | debconf-set-selections
         else
             echo 'debconf debconf/frontend select Gnome' | debconf-set-selections
         fi
-            touch /etc/mxsystem_frontend.chk
+        touch /etc/mxsystem_frontend.chk
     fi
 
      #add legacy libsane folders

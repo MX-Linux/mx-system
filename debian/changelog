@@ -1,6 +1,7 @@
 mx-system (22.03.02mx21) mx; urgency=medium
 
-  * addjust mcode detection with os-prober diversion
+  * adjust mcode detection with os-prober diversion
+  * adjust set of debian frontend
 
  -- fehlix <fehlix@mxlinux.org>  Fri, 01 Apr 2022 16:22:42 -0400
 
