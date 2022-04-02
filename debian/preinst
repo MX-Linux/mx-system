@@ -26,7 +26,12 @@ case "$1" in
                                --package mx-system              \
                                --rename                                              \
                                --divert /usr/share/applications/conky.desktop.dpkg-dist \
-                               /usr/share/applications/conky.desktop
+                               /usr/share/applications/conky.desktop || :
+
+                   dpkg-divert --quiet --package mx-system --rename \
+                      --divert /usr/lib/linux-boot-probes/mounted/40grub2.dpkg-dist \
+                      --add    /usr/lib/linux-boot-probes/mounted/40grub2 || :
+
                    ;;
 
                 *) :

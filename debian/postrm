@@ -15,7 +15,8 @@ case "$1" in
         /usr/share/themes/Industrial/gtk-2.0/gtkrc  \
         /usr/share/themes/Mist/gtk-2.0/gtkrc        \
         /usr/share/themes/Redmond/gtk-2.0/gtkrc     \
-        /usr/share/themes/ThinIce/gtk-2.0/gtkrc;
+        /usr/share/themes/ThinIce/gtk-2.0/gtkrc     \
+        /usr/lib/linux-boot-probes/mounted/40grub2
     do
         dpkg-divert --quiet --package mx-system --rename \
                     --divert $F.dpkg-dist --remove $F || :
