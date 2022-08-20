@@ -104,10 +104,13 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/_RC.*_/_/ /etc/mx-version
     sed -i s/_rc.*_/_/ /etc/mx-version
     sed -i s/MX-21_/MX-21.1_/ /etc/mx-version
+    sed -i s/'PRETTY_NAME="MX 21 Wildflower"'/'PRETTY_NAME="MX 21.1 Wildflower"'/ /etc/lsb-release
+    sed -i s/'DISTRIB_DESCRIPTION="MX 21 Wildflower"'/'DISTRIB_DESCRIPTION="MX 21 Wildflower"'/ /etc/lsb-release
+    #21.1 to 21.2
+    ed -i s/MX-21.1_/MX-21.2_/ /etc/mx-version
     sed -i s/'PRETTY_NAME="MX 21.1 Wildflower"'/'PRETTY_NAME="MX 21.2 Wildflower"'/ /etc/lsb-release
     sed -i s/'DISTRIB_DESCRIPTION="MX 21.1 Wildflower"'/'DISTRIB_DESCRIPTION="MX 21.2 Wildflower"'/ /etc/lsb-release
     sed -i s/DISTRIB_RELEASE.*/'DISTRIB_RELEASE=21.2 '/ /etc/lsb-release
-    #21.1 to 21.2
     fi
 
     #update installed /etc/issue
