@@ -4,7 +4,7 @@ mx-system (22.08.02mx21) mx; urgency=medium
 
  -- Dolphin Oracle <dolphinoracle@gmail.com>  Fri, 26 Aug 2022 13:04:06 -0400
  
- mx-system (22.08.01mx21) mx; urgency=medium
+mx-system (22.08.01mx21) mx; urgency=medium
 
   * mx21.2 strings
 
@@ -14,7 +14,7 @@ mx-system (22.05.01mx21) mx; urgency=medium
 
   * remove gtk2-engines depend
   * keep divert in case it gets installed
-  * as of mx21.1, all isos should have it already 
+  * as of mx21.1 all isos should have it already 
 
  -- Dolphin Oracle <dolphinoracle@gmail.com>  Sun, 15 May 2022 18:41:29 -0400
 
