@@ -1,4 +1,10 @@
-mx-system (22.08.01mx21) mx; urgency=medium
+mx-system (22.08.02mx21) mx; urgency=medium
+
+  * update 57mesaoverride to not take affect on mesa 22 and up
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Fri, 26 Aug 2022 13:04:06 -0400
+ 
+ mx-system (22.08.01mx21) mx; urgency=medium
 
   * mx21.2 strings
 
