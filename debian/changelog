@@ -1,3 +1,9 @@
+mx-system (22.08.03mx21) mx; urgency=medium
+
+  * fix string replacement
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Fri, 26 Aug 2022 23:28:00 -0400
+
 mx-system (22.08.02mx21) mx; urgency=medium
 
   * update 57mesaoverride to not take affect on mesa 22 and up
