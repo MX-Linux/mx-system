@@ -133,8 +133,8 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     fi
     
     #update /etc/initrd-release
-    if [ -e /etc/initrd-release]; then
-        if [ $(grep -q 'NAME="MX"' /etc/initrd-release) ]; then
+    if [ -e /etc/initrd-release ]; then
+        if [ -n $(grep 'NAME="MX"' /etc/initrd-release) ]; then
            sed -i 's/VERSION=.*/VERSION="21.3 (Wildflower)"/' /etc/initrd-release
            sed -i 's/VERSION_ID=.*/VERSION_ID="21.3"/' /etc/initrd-release
            sed -i 's/PRETTY_NAME=.*/PRETTY_NAME="21.3"/' /etc/initrd-release
