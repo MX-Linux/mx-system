@@ -1,3 +1,9 @@
+mx-system (23.01.01mx21) mx; urgency=medium
+
+  * add adjusting strings for initrd-release 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 04 Jan 2023 22:16:40 -0500
+
 mx-system (22.12.01mx21) mx; urgency=medium
 
   * update strings for 21.3 
