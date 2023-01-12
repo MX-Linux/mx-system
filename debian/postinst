@@ -136,13 +136,13 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #work if MX is in Name field
     if [ -e /etc/initrd-release ]; then
     #first reset /etc/initrd-release files that were overwritten by mx-iso-template
-        if [ -n $(grep 'NAME="MX"' /etc/initrd-release ]; then
-        	if [ -n $(grep 'VERSION_ID="21"' /etc/initrd-release ]; then 
+        if [ -n $(grep 'NAME="MX"' /etc/initrd-release) ]; then
+        	if [ -n $(grep 'VERSION_ID="21"' /etc/initrd-release) ]; then 
            		sed -i 's/VERSION="21 (Wildflower)"/VERSION="21.3 (Wildflower)"/' /etc/initrd-release
            		sed -i 's/VERSION_ID="21"/VERSION_ID="21.3"/' /etc/initrd-release
            		sed -i 's/PRETTY_NAME="MX 21 (Wildflower)"/PRETTY_NAME="MX 21.3 (Wildflower)"/' /etc/initrd-release
            	if
-           	if [ -n $(grep 'VERSION_ID="21.1"' /etc/initrd-release ]; then
+           	if [ -n $(grep 'VERSION_ID="21.1"' /etc/initrd-release) ]; then
            		sed -i 's/VERSION="21.1 (Wildflower)"/VERSION="21.3 (Wildflower)"/' /etc/initrd-release
            		sed -i 's/VERSION="21.1_ahs (Wildflower)"/VERSION="21.3_ahs (Wildflower)"/' /etc/initrd-release
            		sed -i 's/VERSION="21.1_fluxbox (Wildflower)"/VERSION="21.3_fluxbox (Wildflower)"/' /etc/initrd-release
@@ -153,7 +153,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
            		sed -i 's/PRETTY_NAME="MX 21.1_KDE (Wildflower)"/PRETTY_NAME="MX 21.3_KDE (Wildflower)"/' /etc/initrd-release
            		sed -i 's/VERSION_ID="21.2"/VERSION_ID="21.3"/' /etc/initrd-release
            	fi
-           	if [ -n $(grep 'VERSION_ID="21.2"' /etc/initrd-release ]; then
+           	if [ -n $(grep 'VERSION_ID="21.2"' /etc/initrd-release) ]; then
            		sed -i 's/VERSION="21.2 (Wildflower)"/VERSION="21.3 (Wildflower)"/' /etc/initrd-release
            		sed -i 's/VERSION="21.2_ahs (Wildflower)"/VERSION="21.3_ahs (Wildflower)"/' /etc/initrd-release
            		sed -i 's/VERSION="21.2_fluxbox (Wildflower)"/VERSION="21.3_fluxbox (Wildflower)"/' /etc/initrd-release
@@ -164,7 +164,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
            		sed -i 's/PRETTY_NAME="MX 21.2_KDE (Wildflower)"/PRETTY_NAME="MX 21.3_KDE (Wildflower)"/' /etc/initrd-release
            		sed -i 's/VERSION_ID="21.2"/VERSION_ID="21.3"/' /etc/initrd-release
            	fi
-           	if [ -n $(grep 'VERSION_ID="21.2.1"' /etc/initrd-release ]; then
+           	if [ -n $(grep 'VERSION_ID="21.2.1"' /etc/initrd-release) ]; then
            		sed -i 's/VERSION="21.2.1 (Wildflower)"/VERSION="21.3 (Wildflower)"/' /etc/initrd-release
            		sed -i 's/VERSION="21.2.1_ahs (Wildflower)"/VERSION="21.3_ahs (Wildflower)"/' /etc/initrd-release
            		sed -i 's/VERSION="21.2.1_fluxbox (Wildflower)"/VERSION="21.3_fluxbox (Wildflower)"/' /etc/initrd-release
