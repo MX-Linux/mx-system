@@ -1,3 +1,9 @@
+mx-system (23.01.03mx21) mx; urgency=medium
+
+  * misc adjustments to string changes in intrd-release 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 11 Jan 2023 22:02:35 -0500
+
 mx-system (23.01.02mx21) mx; urgency=medium
 
   * divert certain desktop files 
