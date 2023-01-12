@@ -136,7 +136,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #work if MX is in Name field
     if [ -e /etc/initrd-release ]; then
     #first reset /etc/initrd-release files that were overwritten by mx-iso-template
-        if [ -n $(grep 'NAME="MX"' /etc/initrd-release) ]; then
+        if [ -n $(grep 'NAME="MX"' /etc/initrd-release ]; then
         	if [ -n $(grep 'VERSION_ID="21"' /etc/initrd-release ]; then 
            		sed -i 's/VERSION="21 (Wildflower)"/VERSION="21.3 (Wildflower)"/' /etc/initrd-release
            		sed -i 's/VERSION_ID="21"/VERSION_ID="21.3"/' /etc/initrd-release
