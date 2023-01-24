@@ -6,4 +6,4 @@ Icon=multimedia-volume-control
 Terminal=false
 Type=Application
 Categories=AudioVideo;Player;Audio;
-NoDisplay=False
+NoDisplay=false
