@@ -1,3 +1,9 @@
+mx-system (23.01.05mx21) mx; urgency=medium
+
+  * remove bogus /usr/share/applications/display-im6.desktop
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Tue, 24 Jan 2023 17:50:33 -0500
+
 mx-system (23.01.04mx21) mx; urgency=medium
 
   * fix NoDisplay values that were incorrectly formated 
