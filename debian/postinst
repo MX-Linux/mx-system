@@ -307,18 +307,19 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 	C8CF351360C3739451788AE581E77EAF14E225A0
 "
 
-#check presense of old key
+	#check presense of old key
 
 
-if [ -e /etc/apt/trusted.gpg ]; then
-	if [ -n "$(apt-key --keyring /etc/apt/trusted.gpg list 2>/dev/null | grep '6302 39CC 130E 1A7F D81A  27B1 4097 6EAF 437D 05B5')" ]; then
+	if [ -e /etc/apt/trusted.gpg ]; then
+		if [ -n "$(apt-key --keyring /etc/apt/trusted.gpg list 2>/dev/null | grep '6302 39CC 130E 1A7F D81A  27B1 4097 6EAF 437D 05B5')" ]; then
 			apt-key --keyring /etc/apt/trusted.gpg del $keys 2>/dev/null 1>/dev/null		
+		fi
 	fi
-fi
 
-#remove bogus imagemagick display desktop file
-if [ -e /usr/share/applications/display-im6.desktop ]; then
-	rm /usr/share/applications/display-im6.desktop
+	#remove bogus imagemagick display desktop file
+	if [ -e /usr/share/applications/display-im6.desktop ]; then
+		rm /usr/share/applications/display-im6.desktop
+	fi
 fi
 
 #DEBHELPER#
