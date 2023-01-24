@@ -70,7 +70,7 @@ Comment[zh_CN]=编辑文本文件
 Comment[zh_TW]=編輯文字檔
 Exec=nano %f
 Type=Application
-NoDisplay=True
+NoDisplay=true
 MimeType=text/plain
 Terminal=true
 
