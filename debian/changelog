@@ -1,6 +1,6 @@
 mx-system (23.03.01mx21) mx; urgency=medium
 
-  * add remote changelog checking
+  * add remote changelog checking for mx repo
 
  -- Dolphin Oracle <dolphinoracle@gmail.com>  Fri, 03 Mar 2023 17:53:39 -0500
 
