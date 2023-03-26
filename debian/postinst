@@ -32,7 +32,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e /etc/mx-version ]; then
 
     sed -i s/'Wildflower'/'Next'/ /etc/mx-version
-    sed -i s/"MX-21_".*"_"/"MX-21_"/ /etc/mx-version
+    sed -i s/"MX-21_".*"_"/"MX-23_"/ /etc/mx-version
     #handle update from beta and rc users
     #sed -i s/_beta.*_/_/ /etc/mx-version
     #sed -i s/_RC.*_/_/ /etc/mx-version
@@ -44,7 +44,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/'PRETTY_NAME="MX 21.*"'/'PRETTY_NAME="MX 23 Next"'/ /etc/lsb-release
     sed -i s/"DISTRIB_RELEASE=21".*/'DISTRIB_RELEASE=23'/ /etc/lsb-release
     sed -i s/'DISTRIB_CODENAME="Wildflower"'/'DISTRIB_CODENAME="Next"'/ /etc/lsb-release
-    sed -i s/DISTRIB_DESCRIPTION="MX 21.*"/DISTRIB_DESCRIPTION="MX 23 Next"/ /etc/lsb-release
+    sed -i 's/DISTRIB_DESCRIPTION="MX 21.*"/DISTRIB_DESCRIPTION="MX 23 Next"/' /etc/lsb-release
     fi
     
     #migrate /etc/initrd-release to /etc/initrd_release
