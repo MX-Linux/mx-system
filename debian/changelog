@@ -1,3 +1,10 @@
+mx-system (23.07.01mx23) mx; urgency=medium
+
+  * remove /etc/grub.d files
+  * cleanup file ID changes
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 25 Mar 2023 22:51:52 -0400
+
 mx-system (23.03.01mx21) mx; urgency=medium
 
   * add remote changelog checking for mx repo
