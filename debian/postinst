@@ -47,22 +47,27 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/DISTRIB_DESCRIPTION="MX 21.*"/DISTRIB_DESCRIPTION="MX 23 Next"/ /etc/lsb-release
     fi
     
-    #update /etc/initrd-release
-    #work if MX is in Name field
+    #migrate /etc/initrd-release to /etc/initrd_release
     if [ -e /etc/initrd-release ]; then
+    	cp /etc/initrd-release /etc/initrd_release
+    	rm /etc/initrd-release
+    fi
+    #update /etc/initrd_release
+    #work if MX is in Name field
+    if [ -e /etc/initrd_release ]; then
     #first reset /etc/initrd-release files that were overwritten by mx-iso-template
-        if [ -n $(grep 'NAME="MX"' /etc/initrd-release) ]; then
+        if [ -n $(grep 'NAME="MX"' /etc/initrd_release) ]; then
            #next release add string changes from 21.3 to next version
-           if [ -n $(grep 'VERSION_ID="21.3"' /etc/initrd-release) ]; then
-           		sed -i 's/VERSION="21.3 (Wildflower)"/VERSION="23 (Next)"/' /etc/initrd-release
-           		sed -i 's/VERSION="21.3_ahs (Wildflower)"/VERSION="23_ahs (Next)"/' /etc/initrd-release
-           		sed -i 's/VERSION="21.3_fluxbox (Wildflower)"/VERSION="23_fluxbox (Next)"/' /etc/initrd-release
-           		sed -i 's/VERSION="21.3_KDE (Wildflower)"/VERSION="23_KDE (Next)"/' /etc/initrd-release
-           		sed -i 's/PRETTY_NAME="MX 21.3 (Wildflower)"/PRETTY_NAME="MX 23 (Next)"/' /etc/initrd-release
-           		sed -i 's/PRETTY_NAME="MX 21.3_ahs (Wildflower)"/PRETTY_NAME="MX 23_ahs (Next)"/' /etc/initrd-release
-           		sed -i 's/PRETTY_NAME="MX 21.3_fluxbox (Wildflower)"/PRETTY_NAME="MX 23_fluxbox (Next)"/' /etc/initrd-release
-           		sed -i 's/PRETTY_NAME="MX 21.3_KDE (Wildflower)"/PRETTY_NAME="MX 23_KDE (Next)"/' /etc/initrd-release
-           		sed -i 's/VERSION_ID="21.3"/VERSION_ID="23"/' /etc/initrd-release
+           if [ -n $(grep 'VERSION_ID="21.3"' /etc/initrd_release) ]; then
+           		sed -i 's/VERSION="21.3 (Wildflower)"/VERSION="23 (Next)"/' /etc/initrd_release
+           		sed -i 's/VERSION="21.3_ahs (Wildflower)"/VERSION="23_ahs (Next)"/' /etc/initrd_release
+           		sed -i 's/VERSION="21.3_fluxbox (Wildflower)"/VERSION="23_fluxbox (Next)"/' /etc/initrd_release
+           		sed -i 's/VERSION="21.3_KDE (Wildflower)"/VERSION="23_KDE (Next)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME="MX 21.3 (Wildflower)"/PRETTY_NAME="MX 23 (Next)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME="MX 21.3_ahs (Wildflower)"/PRETTY_NAME="MX 23_ahs (Next)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME="MX 21.3_fluxbox (Wildflower)"/PRETTY_NAME="MX 23_fluxbox (Next)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME="MX 21.3_KDE (Wildflower)"/PRETTY_NAME="MX 23_KDE (Next)"/' /etc/initrd_release
+           		sed -i 's/VERSION_ID="21.3"/VERSION_ID="23"/' /etc/initrd_release
            	fi
 	    fi
 	fi
