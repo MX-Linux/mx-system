@@ -31,7 +31,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 #update mx-version to latest for MX21, beta, and RC and later
     if [ -e /etc/mx-version ]; then
 
-    sed -i s/'Wildflower'/'Wormhole'/ /etc/mx-version
+    sed -i s/'Wildflower'/'Libretto'/ /etc/mx-version
     sed -i s/"MX-21_".*"_"/"MX-23_"/ /etc/mx-version
     #handle update from beta and rc users
     #sed -i s/_beta.*_/_/ /etc/mx-version
@@ -41,10 +41,10 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     
     if [ -e /etc/lsb-release ]; then
     #Handle update from mx21 users
-    sed -i s/'PRETTY_NAME="MX 21.*"'/'PRETTY_NAME="MX 23 Wormhole"'/ /etc/lsb-release
+    sed -i s/'PRETTY_NAME="MX 21.*"'/'PRETTY_NAME="MX 23 Libretto"'/ /etc/lsb-release
     sed -i s/"DISTRIB_RELEASE=21".*/'DISTRIB_RELEASE=23'/ /etc/lsb-release
-    sed -i s/'DISTRIB_CODENAME="Wildflower"'/'DISTRIB_CODENAME="Wormhole"'/ /etc/lsb-release
-    sed -i 's/DISTRIB_DESCRIPTION="MX 21.*"/DISTRIB_DESCRIPTION="MX 23 Wormhole"/' /etc/lsb-release
+    sed -i s/'DISTRIB_CODENAME="Wildflower"'/'DISTRIB_CODENAME="Libretto"'/ /etc/lsb-release
+    sed -i 's/DISTRIB_DESCRIPTION="MX 21.*"/DISTRIB_DESCRIPTION="MX 23 Libretto"/' /etc/lsb-release
     fi
     
     #migrate /etc/initrd-release to /etc/initrd_release
@@ -59,14 +59,14 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         if [ -n $(grep 'NAME="MX"' /etc/initrd_release) ]; then
            #next release add string changes from 21.3 to next version
            if [ -n $(grep 'VERSION_ID="21.3"' /etc/initrd_release) ]; then
-           		sed -i 's/VERSION="21.3 (Wildflower)"/VERSION="23 (Wormhole)"/' /etc/initrd_release
-           		sed -i 's/VERSION="21.3_ahs (Wildflower)"/VERSION="23_ahs (Wormhole)"/' /etc/initrd_release
-           		sed -i 's/VERSION="21.3_fluxbox (Wildflower)"/VERSION="23_fluxbox (Wormhole)"/' /etc/initrd_release
-           		sed -i 's/VERSION="21.3_KDE (Wildflower)"/VERSION="23_KDE (Wormhole)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 21.3 (Wildflower)"/PRETTY_NAME="MX 23 (Wormhole)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 21.3_ahs (Wildflower)"/PRETTY_NAME="MX 23_ahs (Wormhole)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 21.3_fluxbox (Wildflower)"/PRETTY_NAME="MX 23_fluxbox (Wormhole)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 21.3_KDE (Wildflower)"/PRETTY_NAME="MX 23_KDE (Wormhole)"/' /etc/initrd_release
+           		sed -i 's/VERSION="21.3 (Wildflower)"/VERSION="23 (Libretto)"/' /etc/initrd_release
+           		sed -i 's/VERSION="21.3_ahs (Wildflower)"/VERSION="23_ahs (Libretto)"/' /etc/initrd_release
+           		sed -i 's/VERSION="21.3_fluxbox (Wildflower)"/VERSION="23_fluxbox (Libretto)"/' /etc/initrd_release
+           		sed -i 's/VERSION="21.3_KDE (Wildflower)"/VERSION="23_KDE (Libretto)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME="MX 21.3 (Wildflower)"/PRETTY_NAME="MX 23 (Libretto)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME="MX 21.3_ahs (Wildflower)"/PRETTY_NAME="MX 23_ahs (Libretto)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME="MX 21.3_fluxbox (Wildflower)"/PRETTY_NAME="MX 23_fluxbox (Libretto)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME="MX 21.3_KDE (Wildflower)"/PRETTY_NAME="MX 23_KDE (Libretto)"/' /etc/initrd_release
            		sed -i 's/VERSION_ID="21.3"/VERSION_ID="23"/' /etc/initrd_release
            	fi
 	    fi
