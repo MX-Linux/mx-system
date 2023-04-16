@@ -1,5 +1,4 @@
 udev/* etc/udev/rules.d 
-xorg.d/* etc/X11/xorg.conf.d
 issue usr/share/antiX
 sysctl/* etc/sysctl.d
 apt.conf.d/* etc/apt/apt.conf.d
