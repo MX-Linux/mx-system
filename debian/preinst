@@ -58,11 +58,6 @@ case "$1" in
                    dpkg-divert --quiet --package mx-system --rename \
                       --divert /usr/lib/linux-boot-probes/mounted/40grub2.dpkg-dist \
                       --add    /usr/lib/linux-boot-probes/mounted/40grub2 || :
-                      
-                      #divert defualt grub config to a fixed version
-                   dpkg-divert --quiet --package mx-system --rename \
-                      --divert /usr/share/grub/default/grub.dpkg-dist \
-                      --add    /usr/share/grub/default/grub || :
 
                    ;;
 
