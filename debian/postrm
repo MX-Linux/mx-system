@@ -17,6 +17,7 @@ case "$1" in
         /usr/share/themes/Redmond/gtk-2.0/gtkrc     \
         /usr/share/themes/ThinIce/gtk-2.0/gtkrc     \
         /usr/lib/linux-boot-probes/mounted/40grub2 \
+        /usr/share/grub/default/grub				\
         /usr/share/applications/alsamixer.desktop \
         /usr/share/applications/nano.desktop \
         /usr/share/applications/display-im6.q16.desktop
