@@ -35,9 +35,8 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/'Next'/'Libretto'/ /etc/mx-version
     sed -i s/"MX-21_".*"_"/"MX-23_"/ /etc/mx-version
     #handle update from beta and rc users
-    #sed -i s/_beta.*_/_/ /etc/mx-version
-    #sed -i s/_RC.*_/_/ /etc/mx-version
-    #sed -i s/_rc.*_/_/ /etc/mx-version
+    sed -i s/_beta.*_/_/ /etc/mx-version
+    sed -i s/_RC.*_/_/ /etc/mx-version
     fi
     
     if [ -e /etc/lsb-release ]; then
@@ -61,6 +60,12 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         if [ -n $(grep 'NAME="MX"' /etc/initrd_release) ]; then
            ##alpha1
            sed -i s/'Next'/'Libretto'/ /etc/initrd_release
+           #handle update from beta and rc users
+    		sed -i s/_beta1/_/ /etc/initrd_release
+    		ed -i s/_beta2/_/ /etc/initrd_release
+    		sed -i s/_RC1/_/ /etc/initrd_release
+    		sed -i s/_RC2/_/ /etc/initrd_release
+    		
            #next release add string changes from 21.3 to next version
            if [ -n $(grep 'VERSION_ID="21.3"' /etc/initrd_release) ]; then
            		sed -i 's/VERSION="21.3 (Wildflower)"/VERSION="23 (Libretto)"/' /etc/initrd_release
