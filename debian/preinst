@@ -61,7 +61,7 @@ case "$1" in
 
 #divert dkms to a fixed version
                    dpkg-divert --quiet --package mx-system --rename \
-                      --divert /usr/sbin/dkms \
+                      --divert /usr/sbin/dkms.dpkg-dist \
                       --add    /usr/sbin/dkms || :
 
                    ;;
