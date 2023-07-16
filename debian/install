@@ -10,3 +10,4 @@ Xsession.d/* usr/share/mx-system/Xsession.d
 Xsession.d/57mesa_override etc/X11/Xsession.d
 os-prober/40grub2 usr/lib/linux-boot-probes/mounted
 xorg.conf.d/* 	usr/share/X11/xorg.conf.d
+sbin/*	usr/sbin
