@@ -1,3 +1,10 @@
+mx-system (23.07.08mx23) mx; urgency=medium
+
+  * add conflict to mx-buildiso-dkms
+  * include former mx-buildiso-dkms changes in mx-system
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 19 Jul 2023 23:55:04 -0400
+
 mx-system (23.07.07mx23) mx; urgency=medium
 
   * divert dkms to fix broken pipe, warnings less catastrophic
