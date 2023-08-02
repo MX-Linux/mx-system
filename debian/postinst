@@ -33,7 +33,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 
     sed -i s/'Wildflower'/'Libretto'/ /etc/mx-version
     sed -i s/'Next'/'Libretto'/ /etc/mx-version
-    sed -i s/"MX-21_".*"_"/"MX-23_"/ /etc/mx-version
+    sed -i s/"MX-21.._"/"MX-23_"/ /etc/mx-version
     #handle update from beta and rc users
     sed -i s/_beta.*_/_/ /etc/mx-version
     sed -i s/_RC.*_/_/ /etc/mx-version
