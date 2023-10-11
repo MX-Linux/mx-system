@@ -37,6 +37,8 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #handle update from beta and rc users
     sed -i s/_beta.*_/_/ /etc/mx-version
     sed -i s/_RC.*_/_/ /etc/mx-version
+    #handle mx23 to mx23.1
+    sed -i s/"MX-23_"/"MX-23.1_"/ /etc/mx-version
     fi
     
     if [ -e /etc/lsb-release ]; then
@@ -46,6 +48,10 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/"DISTRIB_RELEASE=21".*/'DISTRIB_RELEASE=23'/ /etc/lsb-release
     sed -i s/'DISTRIB_CODENAME="Wildflower"'/'DISTRIB_CODENAME="Libretto"'/ /etc/lsb-release
     sed -i 's/DISTRIB_DESCRIPTION="MX 21.*"/DISTRIB_DESCRIPTION="MX 23 Libretto"/' /etc/lsb-release
+    #mx23.1
+    sed -i s/'PRETTY_NAME="MX 23 Libretto"'/'PRETTY_NAME="MX 23.1 Libretto"'/ /etc/lsb-release
+    sed -i s/'DISTRIB_RELEASE=23'/'DISTRIB_RELEASE=23,1'/ /etc/lsb-release
+    sed -i 's/DISTRIB_DESCRIPTION="MX 23 Libretto"/DISTRIB_DESCRIPTION="MX 23.1 Libretto"/' /etc/lsb-release
     fi
     
     #migrate /etc/initrd-release to /etc/initrd_release
@@ -78,6 +84,16 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
            		sed -i 's/PRETTY_NAME="MX 21.3_fluxbox (Wildflower)"/PRETTY_NAME="MX 23_fluxbox (Libretto)"/' /etc/initrd_release
            		sed -i 's/PRETTY_NAME="MX 21.3_KDE (Wildflower)"/PRETTY_NAME="MX 23_KDE (Libretto)"/' /etc/initrd_release
            		sed -i 's/VERSION_ID="21.3"/VERSION_ID="23"/' /etc/initrd_release
+           		#mx23.1
+           		sed -i 's/VERSION="23 (Libretto)"/VERSION="23.1 (Libretto)"/' /etc/initrd_release
+           		sed -i 's/VERSION="23_ahs (Libretto)"/VERSION="23.1_ahs (Libretto)"/' /etc/initrd_release
+           		sed -i 's/VERSION="23_fluxbox (Libretto)"/VERSION="23.1_fluxbox (Libretto)"/' /etc/initrd_release
+           		sed -i 's/VERSION="23_KDE (Libretto)"/VERSION="23.1_KDE (Libretto)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME="MX 23 (Libretto)"/PRETTY_NAME="MX 23.1 (Libretto)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME="MX 23_ahs (Libretto)"/PRETTY_NAME="MX 23.1_ahs (Libretto)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME="PRETTY_NAME="MX 23_fluxbox (Libretto)"/PRETTY_NAME="MX 23.1_fluxbox (Libretto)"/' /etc/initrd_release
+           		sed -i 's/PRETTY_NAME=""MX 23_KDE (Libretto)"/PRETTY_NAME="MX 23.1_KDE (Libretto)"/' /etc/initrd_release
+           		sed -i 's/VERSION_ID="23"/VERSION_ID="23.1"/' /etc/initrd_release
            	fi
 	    fi
 	fi
