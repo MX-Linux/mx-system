@@ -50,7 +50,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i 's/DISTRIB_DESCRIPTION="MX 21.*"/DISTRIB_DESCRIPTION="MX 23 Libretto"/' /etc/lsb-release
     #mx23.1
     sed -i s/'PRETTY_NAME="MX 23 Libretto"'/'PRETTY_NAME="MX 23.1 Libretto"'/ /etc/lsb-release
-    sed -i s/'DISTRIB_RELEASE=23'/'DISTRIB_RELEASE=23,1'/ /etc/lsb-release
+    sed -i s/'DISTRIB_RELEASE=23'/'DISTRIB_RELEASE=23.1'/ /etc/lsb-release
     sed -i 's/DISTRIB_DESCRIPTION="MX 23 Libretto"/DISTRIB_DESCRIPTION="MX 23.1 Libretto"/' /etc/lsb-release
     fi
     
