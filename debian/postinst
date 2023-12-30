@@ -31,33 +31,33 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 #update mx-version to latest for MX21, beta, and RC and later
     if [ -e /etc/mx-version ]; then
 
-    sed -i s/'Wildflower'/'Libretto'/ /etc/mx-version
-    sed -i s/'Next'/'Libretto'/ /etc/mx-version
-    sed -i s/"MX-21.._"/"MX-23_"/ /etc/mx-version
+    sed -i 's/Wildflower'/'Libretto/' /etc/mx-version
+    sed -i 's/Next/Libretto/' /etc/mx-version
+    sed -i "s/MX-21.*_/MX-23_/" /etc/mx-version
     #handle update from beta and rc users
     sed -i s/_beta.*_/_/ /etc/mx-version
     sed -i s/_RC.*_/_/ /etc/mx-version
     sed -i s/_rc.*_/_/ /etc/mx-version
     #handle mx23 to mx23.1
-    sed -i s/"MX-23_"/"MX-23.1_"/ /etc/mx-version
+    sed -i 's/MX-23_/MX-23.1_/' /etc/mx-version
     #handle mx23.1 to mx23.2
-    sed -i s/"MX-23.1_"/"MX-23.2_"/ /etc/mx-version
+    sed -i 's/MX-23.1_/MX-23.2_/' /etc/mx-version
     fi
     
     if [ -e /etc/lsb-release ]; then
     #Handle update from mx21 users
-    sed -i s/'Next'/'Libretto'/ /etc/lsb-release
-    sed -i s/'PRETTY_NAME="MX 21.*"'/'PRETTY_NAME="MX 23 Libretto"'/ /etc/lsb-release
-    sed -i s/"DISTRIB_RELEASE=21".*/'DISTRIB_RELEASE=23'/ /etc/lsb-release
-    sed -i s/'DISTRIB_CODENAME="Wildflower"'/'DISTRIB_CODENAME="Libretto"'/ /etc/lsb-release
+    sed -i 's/Next/Libretto/' /etc/lsb-release
+    sed -i 's/PRETTY_NAME="MX 21.*"/PRETTY_NAME="MX 23 Libretto"/' /etc/lsb-release
+    sed -i 's/DISTRIB_RELEASE=21.*/DISTRIB_RELEASE=23/' /etc/lsb-release
+    sed -i 's/DISTRIB_CODENAME="Wildflower"/DISTRIB_CODENAME="Libretto"/' /etc/lsb-release
     sed -i 's/DISTRIB_DESCRIPTION="MX 21.*"/DISTRIB_DESCRIPTION="MX 23 Libretto"/' /etc/lsb-release
     #mx23.1
-    sed -i s/'PRETTY_NAME="MX 23 Libretto"'/'PRETTY_NAME="MX 23.1 Libretto"'/ /etc/lsb-release
-    sed -i s/'DISTRIB_RELEASE=23'.*/'DISTRIB_RELEASE=23.1'/ /etc/lsb-release
+    sed -i 's/PRETTY_NAME="MX 23 Libretto"/PRETTY_NAME="MX 23.1 Libretto"/' /etc/lsb-release
+    sed -i 's/DISTRIB_RELEASE=23.*/DISTRIB_RELEASE=23.1/' /etc/lsb-release
     sed -i 's/DISTRIB_DESCRIPTION="MX 23 Libretto"/DISTRIB_DESCRIPTION="MX 23.1 Libretto"/' /etc/lsb-release
     #mx23.2
-    sed -i s/'PRETTY_NAME="MX 23.1 Libretto"'/'PRETTY_NAME="MX 23.1 Libretto"'/ /etc/lsb-release
-    sed -i s/'DISTRIB_RELEASE=23'.*/'DISTRIB_RELEASE=23.2'/ /etc/lsb-release
+    sed -i 's/PRETTY_NAME="MX 23.1 Libretto"/PRETTY_NAME="MX 23.1 Libretto"/' /etc/lsb-release
+    sed -i 's/DISTRIB_RELEASE=23.*/DISTRIB_RELEASE=23.2/' /etc/lsb-release
     sed -i 's/DISTRIB_DESCRIPTION="MX 23.1 Libretto/DISTRIB_DESCRIPTION="MX 23.2 Libretto"/' /etc/lsb-release
     fi
     
@@ -72,7 +72,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #first reset /etc/initrd-release files that were overwritten by mx-iso-template
         if [ grep -q 'NAME="MX"' /etc/initrd_release ]; then
            ##alpha1
-           sed -i s/'Next'/'Libretto'/ /etc/initrd_release
+           sed -i 's/Next/Libretto/' /etc/initrd_release
            #handle update from beta and rc users
     		sed -i s/_beta1// /etc/initrd_release
     		sed -i s/_beta2// /etc/initrd_release
