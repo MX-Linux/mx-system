@@ -69,49 +69,44 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #update /etc/initrd_release
     #work if MX is in Name field
     if [ -e /etc/initrd_release ]; then
-    #first reset /etc/initrd-release files that were overwritten by mx-iso-template
-        if [ $(grep -q 'NAME="MX"' /etc/initrd_release) ]; then
-           ##alpha1
-           sed -i 's/Next/Libretto/' /etc/initrd_release
-           #handle update from beta and rc users
-    		sed -i s/_beta1// /etc/initrd_release
-    		sed -i s/_beta2// /etc/initrd_release
-    		sed -i s/_RC1// /etc/initrd_release
-    		sed -i s/_RC2// /etc/initrd_release
-    		sed -i s/_RC3// /etc/initrd_release
-    		
+    #first reset /etc/initrd-release files that were overwritten by mx so-template
+    	if [ -n "$(grep 'NAME="MX"' /etc/initrd_release)" ]; then
            #next release add string changes from 21.3 to next version
-              	sed -i 's/VERSION="21.3 (Wildflower)"/VERSION="23 (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION="21.3_ahs (Wildflower)"/VERSION="23_ahs (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION="21.3_fluxbox (Wildflower)"/VERSION="23_fluxbox (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION="21.3_KDE (Wildflower)"/VERSION="23_KDE (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 21.3 (Wildflower)"/PRETTY_NAME="MX 23 (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 21.3_ahs (Wildflower)"/PRETTY_NAME="MX 23_ahs (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 21.3_fluxbox (Wildflower)"/PRETTY_NAME="MX 23_fluxbox (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 21.3_KDE (Wildflower)"/PRETTY_NAME="MX 23_KDE (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION_ID="21.3"/VERSION_ID="23"/' /etc/initrd_release
-           		#mx23.1 
-           		sed -i 's/VERSION="23 (Libretto)"/VERSION="23.1 (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION="23_ahs (Libretto)"/VERSION="23.1_ahs (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION="23_fluxbox (Libretto)"/VERSION="23.1_fluxbox (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION="23_KDE (Libretto)"/VERSION="23.1_KDE (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 23 (Libretto)"/PRETTY_NAME="MX 23.1 (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 23_ahs (Libretto)"/PRETTY_NAME="MX 23.1_ahs (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="PRETTY_NAME="MX 23_fluxbox (Libretto)"/PRETTY_NAME="MX 23.1_fluxbox (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME=""MX 23_KDE (Libretto)"/PRETTY_NAME="MX 23.1_KDE (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION_ID="23"/VERSION_ID="23.1"/' /etc/initrd_release
-           		#mx23.2 
-           		sed -i 's/VERSION="23.1 (Libretto)"/VERSION="23.2 (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION="23.1_ahs (Libretto)"/VERSION="23.2_ahs (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION="23.1_fluxbox (Libretto)"/VERSION="23.2_fluxbox (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION="23.1_KDE (Libretto)/VERSION="23.2_KDE (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 23.1 (Libretto)"/PRETTY_NAME="MX 23.2 (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 23.1_ahs (Libretto)"/PRETTY_NAME="MX 23.2_ahs (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 23.1_fluxbox (Libretto)"/PRETTY_NAME="MX 23.2_fluxbox (Libretto)"/' /etc/initrd_release
-           		sed -i 's/PRETTY_NAME="MX 23.1_KDE (Libretto)"/PRETTY_NAME="MX 23.2_KDE (Libretto)"/' /etc/initrd_release
-           		sed -i 's/VERSION_ID="23.1"/VERSION_ID="23.2"/' /etc/initrd_release
-	    fi
+              	sed -i s/'VERSION="21.3 (Wildflower)"'/'VERSION="23 (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'VERSION="21.3_ahs (Wildflower)"'/'VERSION="23_ahs (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'VERSION="21.3_fluxbox (Wildflower)"'/'VERSION="23_fluxbox (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'VERSION="21.3_KDE (Wildflower)"'/'VERSION="23_KDE (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 21.3 (Wildflower)"'/'PRETTY_NAME="MX 23 (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 21.3_ahs (Wildflower)"'/'PRETTY_NAME="MX 23_ahs (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 21.3_fluxbox (Wildflower)"'/'PRETTY_NAME="MX 23_fluxbox (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 21.3_KDE (Wildflower)"'/'PRETTY_NAME="MX 23_KDE (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'VERSION_ID="21.3"'/'VERSION_ID="23"'/ /etc/initrd_release
+           		sed -i s/'VERSION_ID="21.3_"'/'VERSION_ID="23_"'/ /etc/initrd_release
+           	#mx23.1 
+           		sed -i s/'VERSION="23 (Libretto)"'/'VERSION="23.1 (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'VERSION="23_ahs (Libretto)"'/'VERSION="23.1_ahs (Libretto)'/ /etc/initrd_release
+           		sed -i s/'VERSION="23_fluxbox (Libretto)"'/'VERSION="23.1_fluxbox (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'VERSION="23_KDE (Libretto)'/'VERSION="23.1_KDE (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 23 (Libretto)"'/'PRETTY_NAME="MX 23.1 (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 23_ahs (Libretto)"'/'PRETTY_NAME="MX 23.1_ahs (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 23_fluxbox (Libretto)"'/'PRETTY_NAME="MX 23.1_fluxbox (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 23_KDE (Libretto)"'/'PRETTY_NAME="MX 23.1_KDE (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'VERSION_ID="23"'/'VERSION_ID="23.1"'/ /etc/initrd_release
+           		sed -i s/'VERSION_ID="23_"'/'VERSION_ID="23.1_"'/ /etc/initrd_release
+           	#mx23.2 
+           		sed -i s/'VERSION="23.1 (Libretto)"'/'VERSION="23.2 (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'VERSION="23.1_ahs (Libretto)"'/'VERSION="23.2_ahs (Libretto)'/ /etc/initrd_release
+           		sed -i s/'VERSION="23.1_fluxbox (Libretto)"'/'VERSION="23.2_fluxbox (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'VERSION="23.1_KDE (Libretto)'/'VERSION="23.2_KDE (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 23.1 (Libretto)"'/'PRETTY_NAME="MX 23.2 (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 23.1_ahs (Libretto)"'/'PRETTY_NAME="MX 23.2_ahs (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 23.1_fluxbox (Libretto)"'/'PRETTY_NAME="MX 23.2_fluxbox (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'PRETTY_NAME="MX 23.1_KDE (Libretto)"'/'PRETTY_NAME="MX 23.2_KDE (Libretto)"'/ /etc/initrd_release
+           		sed -i s/'VERSION_ID="23.1"'/'VERSION_ID="23.2"'/ /etc/initrd_release
+           		sed -i s/'VERSION_ID="23.1_"'/'VERSION_ID="23.2_"'/ /etc/initrd_release
+         fi
 	fi
+
     #update installed /etc/issue
     #check for live system
     #check for existence so that it doesn't do anything during initial build process
