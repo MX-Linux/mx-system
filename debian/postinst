@@ -56,7 +56,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i 's/DISTRIB_RELEASE=23.*/DISTRIB_RELEASE=23.1/' /etc/lsb-release
     sed -i 's/DISTRIB_DESCRIPTION="MX 23 Libretto"/DISTRIB_DESCRIPTION="MX 23.1 Libretto"/' /etc/lsb-release
     #mx23.2
-    sed -i 's/PRETTY_NAME="MX 23.1 Libretto"/PRETTY_NAME="MX 23.1 Libretto"/' /etc/lsb-release
+    sed -i 's/PRETTY_NAME="MX 23.1 Libretto"/PRETTY_NAME="MX 23.2 Libretto"/' /etc/lsb-release
     sed -i 's/DISTRIB_RELEASE=23.*/DISTRIB_RELEASE=23.2/' /etc/lsb-release
     sed -i 's/DISTRIB_DESCRIPTION="MX 23.1 Libretto/DISTRIB_DESCRIPTION="MX 23.2 Libretto"/' /etc/lsb-release
     fi
@@ -70,7 +70,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #work if MX is in Name field
     if [ -e /etc/initrd_release ]; then
     #first reset /etc/initrd-release files that were overwritten by mx-iso-template
-        if [ grep -q 'NAME="MX"' /etc/initrd_release ]; then
+        if [ $(grep -q 'NAME="MX"' /etc/initrd_release) ]; then
            ##alpha1
            sed -i 's/Next/Libretto/' /etc/initrd_release
            #handle update from beta and rc users
