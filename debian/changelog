@@ -1,3 +1,9 @@
+mx-system (24.01.02mx23) mx; urgency=medium
+
+  * fixed wrongly formated strings in /etc/initrd_release
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 17 Jan 2024 20:02:42 -0500
+
 mx-system (24.01.01mx23) mx; urgency=medium
 
   * mx23.2
