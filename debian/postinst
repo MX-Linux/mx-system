@@ -98,8 +98,10 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
            	#mx23.2 
            		sed -i s/'VERSION="23.1 (Libretto)"'/'VERSION="23.2 (Libretto)"'/ /etc/initrd_release
            		sed -i s/'VERSION="23.1_ahs (Libretto)"'/'VERSION="23.2_ahs (Libretto)"'/ /etc/initrd_release
+			sed -i s/'VERSION="23.2_ahs (Libretto)'/'VERSION="23.2_ahs (Libretto)"'/ /etc/initrd_release
            		sed -i s/'VERSION="23.1_fluxbox (Libretto)"'/'VERSION="23.2_fluxbox (Libretto)"'/ /etc/initrd_release
            		sed -i s/'VERSION="23.1_KDE (Libretto)"'/'VERSION="23.2_KDE (Libretto)"'/ /etc/initrd_release
+			sed -i s/'VERSION="23.2_KDE (Libretto)""'/'VERSION="23.2_KDE (Libretto)"'/ /etc/initrd_release
            		sed -i s/'PRETTY_NAME="MX 23.1 (Libretto)"'/'PRETTY_NAME="MX 23.2 (Libretto)"'/ /etc/initrd_release
            		sed -i s/'PRETTY_NAME="MX 23.1_ahs (Libretto)"'/'PRETTY_NAME="MX 23.2_ahs (Libretto)"'/ /etc/initrd_release
            		sed -i s/'PRETTY_NAME="MX 23.1_fluxbox (Libretto)"'/'PRETTY_NAME="MX 23.2_fluxbox (Libretto)"'/ /etc/initrd_release
