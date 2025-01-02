@@ -223,10 +223,10 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         cp /usr/share/pixmaps/pppoeconf.png /usr/share/icons/hicolor/48x48/apps/pppoeconf.png
     fi
 
-    #/etc/xdg/autostart/at-spi-dbus-bus.desktop "fix"
-    if [ -e /etc/xdg/autostart/at-spi-dbus-bus.desktop ]; then
-        cp /etc/xdg/autostart/at-spi-dbus-bus.desktop /etc/xdg/autostart/zz-at-spi-dbus-bus.desktop
-        rm /etc/xdg/autostart/at-spi-dbus-bus.desktop
+    #revert previous /etc/xdg/autostart/at-spi-dbus-bus.desktop "fix", now takes place in /etc/X11/Xsession.d/98-at-spi
+    if [ -e /etc/xdg/autostart/zz-at-spi-dbus-bus.desktop ]; then
+    	cp /etc/xdg/autostart/zz-at-spi-dbus-bus.desktop /etc/xdg/autostart/at-spi-dbus-bus.desktop
+        rm /etc/xdg/autostart/zz-at-spi-dbus-bus.desktop
     fi
 
     #update 98vboxadd_xclient
