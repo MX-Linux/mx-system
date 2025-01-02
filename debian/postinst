@@ -58,25 +58,25 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i 's/DISTRIB_CODENAME="Wildflower"/DISTRIB_CODENAME="Libretto"/' /etc/lsb-release
     sed -i 's/DISTRIB_DESCRIPTION="MX 21.*"/DISTRIB_DESCRIPTION="MX 23 Libretto"/' /etc/lsb-release
     #mx23.1
-    sed -i 's/PRETTY_NAME="MX 23 Libretto"/PRETTY_NAME="MX 23.1 Libretto"/' /etc/lsb-release
+    sed -i 's/PRETTY_NAME="MX 23.* Libretto"/PRETTY_NAME="MX 23.1 Libretto"/' /etc/lsb-release
     sed -i 's/DISTRIB_RELEASE=23.*/DISTRIB_RELEASE=23.1/' /etc/lsb-release
-    sed -i 's/DISTRIB_DESCRIPTION="MX 23 Libretto"/DISTRIB_DESCRIPTION="MX 23.1 Libretto"/' /etc/lsb-release
+    sed -i 's/DISTRIB_DESCRIPTION="MX 23.* Libretto"/DISTRIB_DESCRIPTION="MX 23.1 Libretto"/' /etc/lsb-release
     #mx23.2
-    sed -i 's/PRETTY_NAME="MX 23.1 Libretto"/PRETTY_NAME="MX 23.2 Libretto"/' /etc/lsb-release
+    sed -i 's/PRETTY_NAME="MX 23.1.* Libretto"/PRETTY_NAME="MX 23.2 Libretto"/' /etc/lsb-release
     sed -i 's/DISTRIB_RELEASE=23.*/DISTRIB_RELEASE=23.2/' /etc/lsb-release
-    sed -i 's/DISTRIB_DESCRIPTION="MX 23.1 Libretto"/DISTRIB_DESCRIPTION="MX 23.2 Libretto"/' /etc/lsb-release
+    sed -i 's/DISTRIB_DESCRIPTION="MX 23.1.* Libretto"/DISTRIB_DESCRIPTION="MX 23.2 Libretto"/' /etc/lsb-release
     #mx23.3
-    sed -i 's/PRETTY_NAME="MX 23.2 Libretto"/PRETTY_NAME="MX 23.3 Libretto"/' /etc/lsb-release
+    sed -i 's/PRETTY_NAME="MX 23.2.* Libretto"/PRETTY_NAME="MX 23.3 Libretto"/' /etc/lsb-release
     sed -i 's/DISTRIB_RELEASE=23.*/DISTRIB_RELEASE=23.3/' /etc/lsb-release
-    sed -i 's/DISTRIB_DESCRIPTION="MX 23.2 Libretto"/DISTRIB_DESCRIPTION="MX 23.3 Libretto"/' /etc/lsb-release
+    sed -i 's/DISTRIB_DESCRIPTION="MX 23.2.* Libretto"/DISTRIB_DESCRIPTION="MX 23.3 Libretto"/' /etc/lsb-release
     #mx23.4
-    sed -i 's/PRETTY_NAME="MX 23.3 Libretto"/PRETTY_NAME="MX 23.4 Libretto"/' /etc/lsb-release
+    sed -i 's/PRETTY_NAME="MX 23.3.* Libretto"/PRETTY_NAME="MX 23.4 Libretto"/' /etc/lsb-release
     sed -i 's/DISTRIB_RELEASE=23.*/DISTRIB_RELEASE=23.4/' /etc/lsb-release
-    sed -i 's/DISTRIB_DESCRIPTION="MX 23.3 Libretto"/DISTRIB_DESCRIPTION="MX 23.4 Libretto"/' /etc/lsb-release
+    sed -i 's/DISTRIB_DESCRIPTION="MX 23.3.* Libretto"/DISTRIB_DESCRIPTION="MX 23.4 Libretto"/' /etc/lsb-release
     #mx23.5
-    sed -i 's/PRETTY_NAME="MX 23.4 Libretto"/PRETTY_NAME="MX 23.5 Libretto"/' /etc/lsb-release
+    sed -i 's/PRETTY_NAME="MX 23.4.* Libretto"/PRETTY_NAME="MX 23.5 Libretto"/' /etc/lsb-release
     sed -i 's/DISTRIB_RELEASE=24.*/DISTRIB_RELEASE=23.5/' /etc/lsb-release
-    sed -i 's/DISTRIB_DESCRIPTION="MX 23.4 Libretto"/DISTRIB_DESCRIPTION="MX 23.5 Libretto"/' /etc/lsb-release
+    sed -i 's/DISTRIB_DESCRIPTION="MX 23.4.* Libretto"/DISTRIB_DESCRIPTION="MX 23.5 Libretto"/' /etc/lsb-release
     fi
     
     #migrate /etc/initrd-release to /etc/initrd_release
