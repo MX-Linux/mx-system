@@ -1,6 +1,7 @@
 mx-system (25.01.01mx23) mx; urgency=medium
 
   * mx23.5 strings
+  * update at-spi-dbus fixes
 
  -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 01 Jan 2025 19:08:46 -0500
 
