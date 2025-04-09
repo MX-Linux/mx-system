@@ -1,4 +1,11 @@
-mx-system (25.02.02mx23) UNRELEASED; urgency=medium
+mx-system (25.06.01mx25) mx; urgency=medium
+
+  * dkms update latest trixie
+  * strings for mx25
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 09 Apr 2025 19:13:19 -0400
+
+mx-system (25.02.02mx23) mx; urgency=medium
 
   * add logic for running update-grub during update and string changes 
   * add mx23.6 strings 
