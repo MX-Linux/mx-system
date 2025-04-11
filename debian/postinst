@@ -186,7 +186,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 	NEW_PRETTY_NAME="$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"
 	
 	#only update on non-live systems and when there is an actual change 
-	if [ "$LIVE_CHECK" != "overlay" ] && [ "$NEW_PRETTY_NAME" != "$OLD_PRETTY_NAME" ]; then
+	if [ "$LIVE_CHECK" != "overlay" ] && [ "$NEW_PRETTY_NAME" != "$OLD_PRETTY_NAME" ] && [ -x /usr/sbin/update-grub ]; then
 		update-grub
 	fi
 
