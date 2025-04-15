@@ -1,3 +1,9 @@
+mx-system (25.06.02mx25) mx; urgency=medium
+
+  * don't update-grub if grub.cfg doesn't exist
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Mon, 14 Apr 2025 20:53:25 -0400
+
 mx-system (25.06.01mx25) mx; urgency=medium
 
   * dkms update latest trixie
