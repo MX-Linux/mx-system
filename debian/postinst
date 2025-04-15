@@ -187,7 +187,9 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 	
 	#only update on non-live systems and when there is an actual change 
 	if [ "$LIVE_CHECK" != "overlay" ] && [ "$NEW_PRETTY_NAME" != "$OLD_PRETTY_NAME" ] && [ -x /usr/sbin/update-grub ]; then
-		update-grub
+		if [ -e /boot/grub/grub.cfg ]; then
+			exec update-grub
+		fi
 	fi
 
     #update installed /etc/issue
