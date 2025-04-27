@@ -7,8 +7,8 @@ Standards-Version: 3.9.8
 
 Package: mx-system
 Architecture: all
-Depends: gcc, mx-debian-firmware | linux-firmware, mate-polkit | polkit-kde-agent-1 | lxpolkit | lxqt-policykit | gnome-shell, pkexec
-Conflicts:  mx-buildiso-dkms,  policykit-1-gnome
+Depends: gcc, mx-debian-firmware | linux-firmware
+Conflicts:  mx-buildiso-dkms
 Description: metapackage for packages needed for system functions
  This metapackage depends on packages needed for certain systems to work with
  full functionality. Unlike Debian, MX Linux does not install recommended
