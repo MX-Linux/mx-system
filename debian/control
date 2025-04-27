@@ -7,7 +7,7 @@ Standards-Version: 3.9.8
 
 Package: mx-system
 Architecture: all
-Depends: gcc, mx-debian-firmware | linux-firmware, mate-polkit | polkit-kde-agent-1 | polkit-1-auth-agent, pkexec
+Depends: gcc, mx-debian-firmware | linux-firmware, mate-polkit | polkit-kde-agent-1 | lxpolkit | lxqt-policykit | gnome-shell, pkexec
 Conflicts:  mx-buildiso-dkms,  policykit-1-gnome
 Description: metapackage for packages needed for system functions
  This metapackage depends on packages needed for certain systems to work with
