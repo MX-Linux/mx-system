@@ -44,7 +44,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     
     if [ -e /etc/lsb-release ]; then
     #Handle update from mx23 users
-    sed -i 's/Libretto/Fred/' /etc/lsb-release
+    sed -i 's/Libretto/Infinity/' /etc/lsb-release
     sed -i 's/PRETTY_NAME="MX 23.*"/PRETTY_NAME="MX 25 Infinity"/' /etc/lsb-release
     sed -i 's/DISTRIB_RELEASE=23.*/DISTRIB_RELEASE=25/' /etc/lsb-release
     sed -i 's/DISTRIB_CODENAME="Libretto"/DISTRIB_CODENAME="Infinity"/' /etc/lsb-release
