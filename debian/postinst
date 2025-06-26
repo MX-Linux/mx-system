@@ -34,7 +34,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 #update mx-version to latest for MX23, beta, and RC and later
     if [ -e /etc/mx-version ]; then
 
-    sed -i 's/Libretto/Fred/' /etc/mx-version
+    sed -i 's/Libretto/Infinity/' /etc/mx-version
     sed -i "s/MX-23.*_/MX-25_/" /etc/mx-version
     #handle update from beta and rc users
     sed -i s/_beta.*_/_/ /etc/mx-version
@@ -45,10 +45,10 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e /etc/lsb-release ]; then
     #Handle update from mx23 users
     sed -i 's/Libretto/Fred/' /etc/lsb-release
-    sed -i 's/PRETTY_NAME="MX 23.*"/PRETTY_NAME="MX 25 Fred"/' /etc/lsb-release
+    sed -i 's/PRETTY_NAME="MX 23.*"/PRETTY_NAME="MX 25 Infinity"/' /etc/lsb-release
     sed -i 's/DISTRIB_RELEASE=23.*/DISTRIB_RELEASE=25/' /etc/lsb-release
-    sed -i 's/DISTRIB_CODENAME="Libretto"/DISTRIB_CODENAME="Fred"/' /etc/lsb-release
-    sed -i 's/DISTRIB_DESCRIPTION="MX 23.*"/DISTRIB_DESCRIPTION="MX 25 Fred"/' /etc/lsb-release
+    sed -i 's/DISTRIB_CODENAME="Libretto"/DISTRIB_CODENAME="Infinity"/' /etc/lsb-release
+    sed -i 's/DISTRIB_DESCRIPTION="MX 23.*"/DISTRIB_DESCRIPTION="MX 25 Infinity"/' /etc/lsb-release
     #mx25.X
     #sed -i 's/PRETTY_NAME="MX 25.* Fred"/PRETTY_NAME="MX 25.1 Fred"/' /etc/lsb-release
     #sed -i 's/DISTRIB_RELEASE=25.*/DISTRIB_RELEASE=25.1/' /etc/lsb-release
@@ -66,8 +66,8 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #first reset /etc/initrd-release files that were overwritten by mx so-template
     	if [ -n "$(grep 'NAME="MX"' /etc/initrd_release)" ]; then
            #next release add string changes from 23 to next version
-           		sed -i -E s/'VERSION="23(\.[0-9]+)?([^()]*)\(Libretto\)"'/'VERSION="25\2(Fred)"'/g /etc/initrd_release
-           		sed -i -E s/'PRETTY_NAME="MX 23(\.[0-9]+)?([^()]*)\(Libretto\)"'/'PRETTY_NAME="MX 25\2(Fred)"'/g /etc/initrd_release
+           		sed -i -E s/'VERSION="23(\.[0-9]+)?([^()]*)\(Libretto\)"'/'VERSION="25\2(Infinity)"'/g /etc/initrd_release
+           		sed -i -E s/'PRETTY_NAME="MX 23(\.[0-9]+)?([^()]*)\(Libretto\)"'/'PRETTY_NAME="MX 25\2(Infinity)"'/g /etc/initrd_release
 				sed -i s/'VERSION_ID="23.*_"'/'VERSION_ID="25_"'/ /etc/initrd_release
          fi
 	fi

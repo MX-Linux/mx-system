@@ -1,3 +1,9 @@
+mx-system (25.06.04mx25) mx; urgency=medium
+
+  * add Infinity to strings
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Thu, 26 Jun 2025 19:37:08 -0400
+
 mx-system (25.06.03mx25) mx; urgency=medium
 
   * disable modernize sources message
