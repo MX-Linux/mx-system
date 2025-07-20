@@ -1,3 +1,10 @@
+mx-system (25.07.01mx25) mx; urgency=medium
+
+  * modifiy imagemagick divert (TheBSODFan)
+  * remove old divert on old imagemagick file
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sun, 20 Jul 2025 16:02:19 -0400
+
 mx-system (25.06.04mx25) mx; urgency=medium
 
   * add Infinity to strings

@@ -209,6 +209,11 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 	if [ -e /usr/share/applications/display-im6.desktop ]; then
 		rm /usr/share/applications/display-im6.desktop
 	fi
+	#remove old diverton imagemagick desktop file, if it exists
+    if [ -n "$(dpkg-divert --listpackage /usr/share/applications/display-im6.q16.desktop)" ]; then
+        dpkg-divert --quiet --package mx-system --rename \
+                    --divert /usr/share/applications/display-im6.q16.desktop.dpkg-dist --remove /usr/share/applications/display-im6.q16.desktop
+    fi
 fi
 
 #DEBHELPER#
