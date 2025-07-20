@@ -46,7 +46,7 @@ case "$1" in
                                --package mx-system              \
                                --rename                                              \
                                --divert /usr/share/applications/display-im7.q16.desktop.dpkg-dist \
-                               /usr/share/applications/display-im7.q17.desktop || :
+                               /usr/share/applications/display-im7.q16.desktop || :
                                
 				   dpkg-divert --quiet                                               \
                                --add                                                 \
