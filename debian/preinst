@@ -63,6 +63,13 @@ case "$1" in
                    dpkg-divert --quiet --package mx-system --rename \
                       --divert /usr/sbin/dkms.dpkg-dist \
                       --add    /usr/sbin/dkms || :
+#MX descriptor for BOOTX64.CSV                     
+                   dpkg-divert --quiet                                               \
+                               --add                                                 \
+                               --package mx-system              \
+                               --rename                                              \
+                               --divert /usr/lib/shim/BOOTX64.CSV.dpkg-dist \
+                               /usr/lib/shim/BOOTX64.CSV || :
 
                    ;;
                    
