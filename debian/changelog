@@ -1,3 +1,9 @@
+mx-system (25.08.01mx25) mx; urgency=medium
+
+  * remove executable bit on some conf files
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 16 Aug 2025 14:44:19 -0400
+
 mx-system (25.07.02mx25) mx; urgency=medium
 
   * add btrfs mount options udev rule (fehlix)
