@@ -319,6 +319,13 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 	if [ -e /usr/share/applications/display-im6.desktop ]; then
 		rm /usr/share/applications/display-im6.desktop
 	fi
+	#fix permissions on sysctl.d .conf files provided by mx-system
+    fi [ -x "/etc/sysctl.d/99-swappiness_mx.conf" ]; then
+    	chmod a-x /etc/sysctl.d/99-swappiness_mx.conf
+    fi
+    fi [ -x "/etc/sysctl.d/99-vm-dirtybytes_mx.conf" ]; then
+    	chmod a-x /etc/sysctl.d/99-vm-dirtybytes_mx.conf
+    fi
 fi
 
 #DEBHELPER#
