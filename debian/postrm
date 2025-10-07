@@ -26,7 +26,7 @@ case "$1" in
                     --divert $F.dpkg-dist --remove $F || :
     done
     
-        dpkg-divert --queit --package mx-system --rename \
+        dpkg-divert --quiet --package mx-system --rename \
         			--divert /usr/sbin/dkms.real --remove /usr/sbin/dkms ||:
   ;;
   *) :

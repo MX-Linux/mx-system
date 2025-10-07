@@ -61,8 +61,9 @@ case "$1" in
 
 #remove old dkms.mx divert, if it exists
 					if [ -x /usr/sbin/dkms.mx ]; then
-						#remove file because both can't exist
+					#remove mx-system version file because both can't exist
 						rm -f /usr/sbin/dkms
+						# remove divert, /usr/sbin/dkms should be debian's version
         				dpkg-divert --package mx-system --rename \
                    		--divert /usr/sbin/dkms.dpkg-dist --remove /usr/sbin/dkms || :
 					fi
@@ -71,6 +72,12 @@ case "$1" in
                    dpkg-divert --quiet --package mx-system --rename \
                       --divert /usr/sbin/dkms.real \
                       --add    /usr/sbin/dkms || :
+                    if [ ! -x /usr/sbin/dkms.real ]; then
+                    #copy new file, because the divert below doesn't quite do it 
+                    #without reinstalling dkms.
+                   		cp /usr/sbin/dkms /usr/sbin/dkms.real
+                   	fi
+                    
                       
 #MX descriptor for BOOTX64.CSV                     
                    dpkg-divert --quiet                                               \
