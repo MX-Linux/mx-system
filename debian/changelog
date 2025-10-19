@@ -1,3 +1,10 @@
+mx-system (25.10.02mx25) mx; urgency=medium
+
+  * remove mask on systemd-networkd-wait-online.service if its ours
+  * add service override for same under /etc/systemd/system
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sun, 19 Oct 2025 18:39:51 -0400
+
 mx-system (25.10.01mx25) mx; urgency=medium
 
   * dkms changes
