@@ -40,6 +40,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i s/_beta.*_/_/ /etc/mx-version
     sed -i s/_RC.*_/_/ /etc/mx-version
     sed -i s/_rc.*_/_/ /etc/mx-version
+       
     fi
     
     if [ -e /etc/lsb-release ]; then
@@ -65,10 +66,14 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e /etc/initrd_release ]; then
     #first reset /etc/initrd-release files that were overwritten by mx so-template
     	if [ -n "$(grep 'NAME="MX"' /etc/initrd_release)" ]; then
+    	   #update beta and RC
+    	   sed -i s/_beta1// /etc/initrd_release
+    	   sed -i s/_RC1// /etc/initrd_release
+    	   
            #next release add string changes from 23 to next version
-           		sed -i -E s/'VERSION="23(\.[0-9]+)?([^()]*)\(Libretto\)"'/'VERSION="25\2(Infinity)"'/g /etc/initrd_release
-           		sed -i -E s/'PRETTY_NAME="MX 23(\.[0-9]+)?([^()]*)\(Libretto\)"'/'PRETTY_NAME="MX 25\2(Infinity)"'/g /etc/initrd_release
-				sed -i s/'VERSION_ID="23.*_"'/'VERSION_ID="25_"'/ /etc/initrd_release
+           sed -i -E s/'VERSION="23(\.[0-9]+)?([^()]*)\(Libretto\)"'/'VERSION="25\2(Infinity)"'/g /etc/initrd_release
+           sed -i -E s/'PRETTY_NAME="MX 23(\.[0-9]+)?([^()]*)\(Libretto\)"'/'PRETTY_NAME="MX 25\2(Infinity)"'/g /etc/initrd_release
+		   sed -i s/'VERSION_ID="23.*_"'/'VERSION_ID="25_"'/ /etc/initrd_release
          fi
 	fi
 
