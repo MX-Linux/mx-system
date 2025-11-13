@@ -81,7 +81,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 	NEW_PRETTY_NAME="$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"
 	
 	#only update on non-live systems and when there is an actual change 
-	if [ "$LIVE_CHECK" != "overlay" ] && [ "$NEW_PRETTY_NAME" != "$OLD_PRETTY_NAME" ]; then
+	if [ "$LIVE_CHECK" != "overlay" ] && [ "$NEW_PRETTY_NAME" != "$OLD_PRETTY_NAME" ] && [ -x /usr/sbin/update-grub ]; then
 		if [ -e /boot/grub/grub.cfg ]; then
 			exec update-grub
 		fi
@@ -214,13 +214,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 	if [ -e /usr/share/applications/display-im6.desktop ]; then
 		rm /usr/share/applications/display-im6.desktop
 	fi
-	#remove old diverton imagemagick desktop file, if it exists
-    if [ -n "$(dpkg-divert --listpackage /usr/share/applications/display-im6.q16.desktop)" ]; then
-        dpkg-divert --quiet --package mx-system --rename \
-                    --divert /usr/share/applications/display-im6.q16.desktop.dpkg-dist --remove /usr/share/applications/display-im6.q16.desktop
-    fi
-    
-    #fix permissions on sysctl.d .conf files provided by mx-system
+	#fix permissions on sysctl.d .conf files provided by mx-system
     if [ -x "/etc/sysctl.d/99-swappiness_mx.conf" ]; then
     	chmod a-x /etc/sysctl.d/99-swappiness_mx.conf
     fi
