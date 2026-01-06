@@ -36,6 +36,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 
     sed -i 's/Libretto/Infinity/' /etc/mx-version
     sed -i "s/MX-23.*_/MX-25_/" /etc/mx-version
+    sed -i "s/MX-25.*_/MX-25.1_/" /etc/mx-version
     #handle update from beta and rc users
     sed -i s/_beta.*_/_/ /etc/mx-version
     sed -i s/_RC.*_/_/ /etc/mx-version
