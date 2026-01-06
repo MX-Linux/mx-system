@@ -51,9 +51,9 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i 's/DISTRIB_CODENAME="Libretto"/DISTRIB_CODENAME="Infinity"/' /etc/lsb-release
     sed -i 's/DISTRIB_DESCRIPTION="MX 23.*"/DISTRIB_DESCRIPTION="MX 25 Infinity"/' /etc/lsb-release
     #mx25.X
-    #sed -i 's/PRETTY_NAME="MX 25.* Fred"/PRETTY_NAME="MX 25.1 Fred"/' /etc/lsb-release
+    #sed -i 's/PRETTY_NAME="MX 25.* Infinity"/PRETTY_NAME="MX 25.1 Infinity"/' /etc/lsb-release
     #sed -i 's/DISTRIB_RELEASE=25.*/DISTRIB_RELEASE=25.1/' /etc/lsb-release
-    #sed -i 's/DISTRIB_DESCRIPTION="MX 25.* Fred"/DISTRIB_DESCRIPTION="MX 25.1 Fred"/' /etc/lsb-release
+    #sed -i 's/DISTRIB_DESCRIPTION="MX 25.* Infinity"/DISTRIB_DESCRIPTION="MX 25.1 Infinity"/' /etc/lsb-release
     fi
     
     #migrate /etc/initrd-release to /etc/initrd_release
@@ -74,6 +74,11 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
            sed -i -E s/'VERSION="23(\.[0-9]+)?([^()]*)\(Libretto\)"'/'VERSION="25\2(Infinity)"'/g /etc/initrd_release
            sed -i -E s/'PRETTY_NAME="MX 23(\.[0-9]+)?([^()]*)\(Libretto\)"'/'PRETTY_NAME="MX 25\2(Infinity)"'/g /etc/initrd_release
 		   sed -i s/'VERSION_ID="23.*_"'/'VERSION_ID="25_"'/ /etc/initrd_release
+
+			#mx25.1
+			sed -i -E s/'VERSION="25(\.[0-9]+)?([^()]*)\(Infinity\)"'/'VERSION="25.1\2(Infinity)"'/g /etc/initrd_release
+            sed -i -E s/'PRETTY_NAME="MX 25(\.[0-9]+)?([^()]*)\(Infinity\)"'/'PRETTY_NAME="MX 25.1\2(Infinity)"'/g /etc/initrd_release
+		    sed -i s/'VERSION_ID="25.*_"'/'VERSION_ID="25.1_"'/ /etc/initrd_release
          fi
 	fi
 
