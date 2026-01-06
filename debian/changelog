@@ -1,3 +1,9 @@
+mx-system (26.12.01mx25) mx; urgency=medium
+
+  * mx 25.1 strings
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Tue, 06 Jan 2026 18:46:59 -0500
+
 mx-system (25.11.01mx25) mx; urgency=medium
 
   * remove RC1 and beta1 strings IDs
