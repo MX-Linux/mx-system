@@ -7,6 +7,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     
     #first part for deciding whether to run update-grub or not
     OLD_PRETTY_NAME="$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"
+    echo "$OLD_PRETTY_NAME"
 
      #add a symlink to mx-version called antix-version, because some apps look for info from antix-version
     if [ -e /etc/mx-version ]; then
@@ -87,9 +88,10 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 
 	#second part of update-grub setup
 	NEW_PRETTY_NAME="$(unset PRETTY_NAME; (. /etc/lsb-release; echo ${PRETTY_NAME:?}) 2>/dev/null || echo Debian)"
+	E
 	
 	#only update on non-live systems and when there is an actual change 
-	if [ "$LIVE_CHECK" != "overlay" ] && [ -x /usr/sbin/update-grub ]; then
+	if [ "$LIVE_CHECK" != "overlay" ] && [ "$NEW_PRETTY_NAME" != "$OLD_PRETTY_NAME" ] && [ -x /usr/sbin/update-grub ]; then
 		if [ -e /boot/grub/grub.cfg ]; then
 			/usr/sbin/update-grub
 		fi
