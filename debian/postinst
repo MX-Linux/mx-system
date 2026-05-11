@@ -36,9 +36,9 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 
     sed -i 's/Libretto/Infinity/' /etc/mx-version
     sed -i "s/MX-23.*_/MX-25_/" /etc/mx-version
-    sed -i "s/MX-25.*_Xfce_/MX-25.1_Xfce_/" /etc/mx-version
-    sed -i "s/MX-25.*_KDE_/MX-25.1_KDE_/" /etc/mx-version
-    sed -i "s/MX-25.*_fluxbox_/MX-25.1_fluxbox_/" /etc/mx-version
+    sed -i "s/MX-25.*_Xfce_/MX-25.2_Xfce_/" /etc/mx-version
+    sed -i "s/MX-25.*_KDE_/MX-25.2_KDE_/" /etc/mx-version
+    sed -i "s/MX-25.*_fluxbox_/MX-25.2_fluxbox_/" /etc/mx-version
     #handle update from beta and rc users
     sed -i s/_beta.*_/_/ /etc/mx-version
     sed -i s/_RC.*_/_/ /etc/mx-version
@@ -54,9 +54,9 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i 's/DISTRIB_CODENAME="Libretto"/DISTRIB_CODENAME="Infinity"/' /etc/lsb-release
     sed -i 's/DISTRIB_DESCRIPTION="MX 23.*"/DISTRIB_DESCRIPTION="MX 25 Infinity"/' /etc/lsb-release
     #mx25.X
-    sed -i 's/PRETTY_NAME="MX 25.* Infinity"/PRETTY_NAME="MX 25.1 Infinity"/' /etc/lsb-release
-    sed -i 's/DISTRIB_RELEASE=25.*/DISTRIB_RELEASE=25.1/' /etc/lsb-release
-    sed -i 's/DISTRIB_DESCRIPTION="MX 25.* Infinity"/DISTRIB_DESCRIPTION="MX 25.1 Infinity"/' /etc/lsb-release
+    sed -i 's/PRETTY_NAME="MX 25.* Infinity"/PRETTY_NAME="MX 25.2 Infinity"/' /etc/lsb-release
+    sed -i 's/DISTRIB_RELEASE=25.*/DISTRIB_RELEASE=25.2/' /etc/lsb-release
+    sed -i 's/DISTRIB_DESCRIPTION="MX 25.* Infinity"/DISTRIB_DESCRIPTION="MX 25.2 Infinity"/' /etc/lsb-release
     fi
     
     #migrate /etc/initrd-release to /etc/initrd_release
@@ -79,9 +79,9 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 		   sed -i s/'VERSION_ID="23.*_"'/'VERSION_ID="25_"'/ /etc/initrd_release
 
 			#mx25.1
-			sed -i -E s/'VERSION="25(\.[0-9]+)?([^()]*)\(Infinity\)"'/'VERSION="25.1\2(Infinity)"'/g /etc/initrd_release
-            sed -i -E s/'PRETTY_NAME="MX 25(\.[0-9]+)?([^()]*)\(Infinity\)"'/'PRETTY_NAME="MX 25.1\2(Infinity)"'/g /etc/initrd_release
-		    sed -i s/'VERSION_ID="25.*_"'/'VERSION_ID="25.1_"'/ /etc/initrd_release
+			sed -i -E s/'VERSION="25(\.[0-9]+)?([^()]*)\(Infinity\)"'/'VERSION="25.2\2(Infinity)"'/g /etc/initrd_release
+            sed -i -E s/'PRETTY_NAME="MX 25(\.[0-9]+)?([^()]*)\(Infinity\)"'/'PRETTY_NAME="MX 25.2\2(Infinity)"'/g /etc/initrd_release
+		    sed -i s/'VERSION_ID="25.*_"'/'VERSION_ID="25.2_"'/ /etc/initrd_release
          fi
 	fi
 
