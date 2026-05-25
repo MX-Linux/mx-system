@@ -35,7 +35,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     if [ -e /etc/mx-version ]; then
 
     sed -i 's/Libretto/Infinity/' /etc/mx-version
-    sed -i "s/MX-23.*_/MX-25_/" /etc/mx-version
+    sed -i "s/MX-23.*_/MX-25.2_/" /etc/mx-version
     sed -i "s/MX-25.*_Xfce_/MX-25.2_Xfce_/" /etc/mx-version
     sed -i "s/MX-25.*_KDE_/MX-25.2_KDE_/" /etc/mx-version
     sed -i "s/MX-25.*_fluxbox_/MX-25.2_fluxbox_/" /etc/mx-version
