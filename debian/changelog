@@ -1,3 +1,9 @@
+mx-system (26.5.02mx25) mx; urgency=medium
+
+  * add mx25.1 missing string change
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Mon, 25 May 2026 14:24:45 -0400
+
 mx-system (26.5.01mx25) mx; urgency=medium
 
   * mx25.2 strings
