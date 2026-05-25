@@ -83,7 +83,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
 			#mx25.1
 			sed -i -E s/'VERSION="25(\.[0-9]+)?([^()]*)\(Infinity\)"'/'VERSION="25.2\2(Infinity)"'/g /etc/initrd_release
             sed -i -E s/'PRETTY_NAME="MX 25(\.[0-9]+)?([^()]*)\(Infinity\)"'/'PRETTY_NAME="MX 25.2\2(Infinity)"'/g /etc/initrd_release
-		    sed -i s/'VERSION_ID="25.*_"'/'VERSION_ID="25.2_"'/ /etc/initrd_release
+		    sed -i s/'VERSION_ID="25.*"'/'VERSION_ID="25.2_"'/ /etc/initrd_release
          fi
 	fi
 
