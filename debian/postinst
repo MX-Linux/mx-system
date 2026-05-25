@@ -39,6 +39,8 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i "s/MX-25.*_Xfce_/MX-25.2_Xfce_/" /etc/mx-version
     sed -i "s/MX-25.*_KDE_/MX-25.2_KDE_/" /etc/mx-version
     sed -i "s/MX-25.*_fluxbox_/MX-25.2_fluxbox_/" /etc/mx-version
+    #replacement for those updating from mx25.1 to 25.1 and so forth, mistake in mx25.1 string change
+    sed -i "s/MX-25.1_x64/MX-25.2_x64/" /etc/mx-version
     #handle update from beta and rc users
     sed -i s/_beta.*_/_/ /etc/mx-version
     sed -i s/_RC.*_/_/ /etc/mx-version
