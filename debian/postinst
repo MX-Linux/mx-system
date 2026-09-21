@@ -137,7 +137,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     # Ensure /usr and /etc have appropriate permissions
     DIRS="/etc /etc/apt /etc/apt/apt.conf.d /etc/apt/sources.list.d /etc/default /etc/init.d /etc/init.d/debian /etc/modprobe.d /etc/network /etc/skel /etc/systemd /etc/systemd/system /etc/systemd/system-generators /usr /usr/share /usr/share/keyrings"
 
-    for $i in $DIRS; do
+    for i in $DIRS; do
         if [ -d $i ]; then
             chmod go-w $i 2>/dev/null || :
         fi
