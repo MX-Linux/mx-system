@@ -1,3 +1,9 @@
+mx-system (26.09.02mx25) mx; urgency=medium
+
+  * ensure appropriate permissions on /usr and /etc 755
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Mon, 21 Sep 2026 15:29:59 -0400
+
 mx-system (26.09.01mx25) mx; urgency=medium
 
   * mx25.3 strings

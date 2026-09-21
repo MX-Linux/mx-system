@@ -133,6 +133,10 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
         fi
         touch /etc/mxsystem_frontend.chk
     fi
+    
+    # Ensure /usr and /etc have appropriate permissions
+    chmod 755 /etc 2>/dev/null || :
+    chmod 755 /usr 2>/dev/null || :
 
      #add legacy libsane folders
 
