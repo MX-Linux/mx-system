@@ -37,7 +37,9 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     sed -i 's/Libretto/Infinity/' /etc/mx-version
     sed -i "s/MX-23.*_/MX-25.3_/" /etc/mx-version
     sed -i "s/MX-25.*_Xfce_/MX-25.3_Xfce_/" /etc/mx-version
-    sed -i "s/MX-25.*_KDE_/MX-25.3_KDE_/" /etc/mx-version# Ensure /usr and /etc have appropriate permissions
+    sed -i "s/MX-25.*_KDE_/MX-25.3_KDE_/" /etc/mx-version
+
+    # Ensure /usr and /etc have appropriate permissions
     DIRS="/etc /etc/apt /etc/apt/apt.conf.d /etc/apt/sources.list.d /etc/default /etc/init.d /etc/init.d/debian /etc/modprobe.d /etc/network /etc/skel /etc/systemd /etc/systemd/system /etc/systemd/system-generators /usr /usr/share /usr/share/keyrings"
 
     for i in $DIRS; do
