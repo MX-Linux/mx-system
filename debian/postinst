@@ -142,6 +142,71 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
             chmod go-w $i 2>/dev/null || :
         fi
     done
+    
+    # Ensure some MX files have the correct permissions by default
+    
+	files="
+	/etc/apt/apt.conf.d/90mx-modernize-sources-notice
+	/etc/apt/sources.list.d/debian.sources
+	/etc/apt/sources.list.d/mx.sources
+	/etc/apt/apt.conf
+	/etc/default/console-setup
+	/etc/default/keyboard
+	/etc/default/resolvconf
+	/etc/init.d/checkfs.sh*
+	/etc/init.d/console-setup*
+	/etc/init.d/console-setup.sh*
+	/etc/init.d/cron
+	/etc/init.d/hwclock.sh*
+	/etc/init.d/keyboard-setup*
+	/etc/init.d/keyboard-setup.sh*
+	/etc/init.d/kmod
+	/etc/init.d/lm-sensors*
+	/etc/init.d/networking
+	/etc/init.d/sendsigs*
+	/etc/init.d/umountfs*
+	/etc/init.d/debian/checkfs.sh
+	/etc/init.d/debian/console-setup
+	/etc/init.d/debian/console-setup.sh
+	/etc/init.d/debian/cron
+	/etc/init.d/debian/hwclock.sh
+	/etc/init.d/debian/keyboard-setup
+	/etc/init.d/debian/keyboard-setup.sh
+	/etc/init.d/debian/kmod
+	/etc/init.d/debian/lm-sensors
+	/etc/init.d/debian/sendsigs
+	/etc/init.d/debian/umountfs*
+	/etc/modprobe.d/blacklist-ntfs3.conf
+	/etc/modprobe.d/kvm.conf
+	/etc/skel/.bashrc
+	/etc/skel/.inputrc
+	/etc/network/interfaces
+	/etc/systemd/system/live-disables-readme
+	/etc/systemd/system/systemd-networkd-wait-online.service
+	/etc/systemd/system/wpa_supplicant-nl80211@.service
+	/etc/systemd/system/wpa_supplicant-wired@.service
+	/etc/systemd/system/wpa_supplicant@.service
+	/etc/systemd/system-generators/live-generators-readme
+	/etc/systemd/system-generators/systemd-fstab-generator
+	/etc/systemd/system-generators/systemd-gpt-auto-generator
+	/etc/adduser.conf
+	/etc/adjtime
+	/etc/bash.bashrc
+	/etc/fstab
+	/etc/hosts
+	/etc/inittab
+	/etc/locale.gen
+	/etc/locale.gen.all
+	/etc/locale.gen.net
+	/usr/share/keyrings/mx-25-archive-keyring.gpg"
+	
+	for i in $files; do
+	    if [ -e $i ]; then
+	        echo $i
+	        chmod go-w $i 2>/dev/null || :
+	    fi
+	done
+
 
      #add legacy libsane folders
 
