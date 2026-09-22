@@ -1,3 +1,9 @@
+mx-system (26.09.04mx25) mx; urgency=medium
+
+  * fix permissions on some default files 
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Mon, 21 Sep 2026 20:55:24 -0400
+
 mx-system (26.09.03mx25) mx; urgency=medium
 
   * fix permissions on a handfull of directories 
