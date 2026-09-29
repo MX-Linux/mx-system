@@ -1,3 +1,9 @@
+mx-system (26.09.06mx25) mx; urgency=medium
+
+  * correct outlier distrib_release value on some upgraded systems
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Mon, 28 Sep 2026 20:37:40 -0400
+
 mx-system (26.09.05mx25) mx; urgency=medium
 
   * fix permissions on some default files & directories

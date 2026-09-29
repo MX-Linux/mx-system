@@ -131,6 +131,7 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #mx25.X
     sed -i 's/PRETTY_NAME="MX 25.* Infinity"/PRETTY_NAME="MX 25.3 Infinity"/' /etc/lsb-release
     sed -i 's/DISTRIB_RELEASE=25.*/DISTRIB_RELEASE=25.3/' /etc/lsb-release
+    sed -i 's/DISTRIB_RELEASE="25.*"/DISTRIB_RELEASE=25.3/' /etc/lsb-release
     sed -i 's/DISTRIB_DESCRIPTION="MX 25.* Infinity"/DISTRIB_DESCRIPTION="MX 25.3 Infinity"/' /etc/lsb-release
     fi
     
