@@ -1,3 +1,2 @@
-# Set the maximum dirty cache for USB drives to an acceptable level (just over 1MB).
-# The final value isn't set exactly, so add 4KB (page size on x86-64) to compensate.
-ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", ENV{ID_BUS}=="usb", ATTR{bdi/strict_limit}="1", ATTR{bdi/max_bytes}="1052672"
+# Set the maximum dirty cache for USB drives to an acceptable level (just over 20MB).
+ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", ENV{ID_BUS}=="usb", ATTR{bdi/strict_limit}="1", ATTR{bdi/max_bytes}="20971520"
