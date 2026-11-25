@@ -408,6 +408,8 @@ if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-remov
     #remove old global vm-dirytbyes configuration
     if [ -e "/etc/sysctl.d/99-vm-dirtybytes_mx.conf" ]; then
     	rm -f /etc/sysctl.d/99-vm-dirtybytes_mx.conf
+    	#reset to system defaults in the event the file is removed, using v.dirty_ratio because system cannot revert _bytes to 0 when set to a value
+    	sysctl -w vm.dirty_ratio=20
     fi
     
     #put mask on systemd-networkd-wait-online.service if it doesn't exists
