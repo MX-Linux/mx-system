@@ -8,7 +8,9 @@
 # part of buildiso-mx
 # initial version fehlix@mxlinux.org April 2022 
 #
-# version 22.04.01
+# version 26.11.01
+#
+# 26.11: dkms signing key limited to module signing (mx_dkms_hardened_mok)
 
 architecture_option=""
 case $(dpkg --print-architecture) in
@@ -31,6 +33,34 @@ case "$1" in
          dkms_kernel_option="$kernel_option $architecture_option"
          ;;
          *) :
+         ;;
+esac
+
+# dkms MOK signing key: when /var/lib/dkms/mok.key or mok.pub is missing,
+# create the pair here like dkms does, but limited to module signing
+# (extendedKeyUsage 1.3.6.1.4.1.2312.16.1.2); dkms then uses it. A key set in
+# /etc/dkms/framework.conf(.d) is left alone. Nothing is enrolled here.
+mx_dkms_hardened_mok() {
+    local dir=/var/lib/dkms conf
+    local key=$dir/mok.key pub=$dir/mok.pub
+    for conf in /etc/dkms/framework.conf /etc/dkms/framework.conf.d/*.conf; do
+        [ -r "$conf" ] && grep -Eq '^[[:space:]]*(mok_signing_key|mok_certificate)=' "$conf" && return 0
+    done
+    [ -f "$key" ] && [ -f "$pub" ] && return 0
+    command -v openssl >/dev/null 2>&1 || return 0
+    mkdir -p "$dir" && rm -f "$key" "$pub" &&
+    ( umask 077
+      openssl req -new -x509 -nodes -days 36500 -subj "/CN=DKMS module signing key" \
+          -newkey rsa:2048 -keyout "$key" \
+          -addext "extendedKeyUsage=codeSigning,1.3.6.1.4.1.2312.16.1.2" \
+          -outform DER -out "$pub" >/dev/null 2>&1 ) &&
+    chmod 0644 "$pub" &&
+    echo "dkms: created signing key (module signing only): $pub" 1>&2
+}
+
+case "$1" in
+    build|install|autoinstall|generate_mok)
+         [ "$(id -u)" = 0 ] && mx_dkms_hardened_mok
          ;;
 esac
 
